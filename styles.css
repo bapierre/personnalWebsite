@@ -248,6 +248,9 @@ section a {
     #socials img {
         width: 3vmin;
     }
+    #me {
+        width: 80%;
+    }
 }
 
 @media screen and (min-width: 900px) {
