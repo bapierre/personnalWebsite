@@ -4,159 +4,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModernDaySamurai</title>
+    <title>Baptiste Pierre - ModernDaySamurai</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <header>
-        <h1>Baptiste Pierre</h1>
-    </header>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Baptiste Pierre</h1>
+            <p class="hero-subtitle">ModernDaySamurai</p>
+            <div class="hero-tagline">Software Engineer • Video Creator • Digital Artist</div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </div>
 
-    <nav>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#socials">Socials</a></li>
-        </ul>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">BP</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#socials">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
+    <!-- Main Content -->
     <div class="wrapper">
-        <section id="about">
-            <!-- About Section Content -->
-            <h1>Software engineer by formation, video editor by passion and full-time creator by destiny</h1>
-            <p>
-                Starting my career in IT has always been what I seeked for because as a creative mind the only limit to creativity is the ability to express it. Becoming an engineer allowed me to understand everything I needed to in order to create websites, apps and basically anything digital related. The next step after that in order to fulfill my creative skillset was to learn video editing which in today's world is a must have to expand the audience that anyone's creativity was designed to reach.
-            </p>
-        </section>
-
-        <section id ="me">
-            <img src="ressources/me.jpg">
-        </section>
-
-        <section id="products">
-            <!-- Products Section Content -->
-            <h1>You need me you just don't know it yet</h1>
-            <p>Being able to make decisions and take initiatives for the benefit of my employer has given me the prestigious position of project leader only 6 months after starting my firt ever IT job but no matter what your desires are my priority. <br>
-            My ability to work independently allows you to focus on the tasks that really matters like developping your business or creating content.
-            </p>
-        </section>
-
-        <section>
-            <h1>Video editing for social medias</h1>
-            <p>
-                The commisions I'm currently accepting revolve around video editing ranging from TikToks to Youtube videos no matter the format you'd like. <br>
-                The price depending on the amount of work that has to be done I'll ask you to contact me via <a href="mailto:moderndaysamurai45@outlook.com">mail</a> to further discuss your project.
-            </p>
-
-        </section>
-
-        <section id="portfolio">
-            <!-- Portfolio Section Content -->
-            <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
-                <img class= "image" src="ressources/banner.jpg" draggable ="false"/>
-                <img class= "image" src="ressources/bowling.jpg" draggable ="false"/>
-                <img class= "image" src="ressources/bowling.jpg" draggable ="false"/>
-                <img class= "image" src="ressources/bowling.jpg" draggable ="false"/>
-                <img class= "image" src="ressources/bowling.jpg" draggable ="false"/>
-                <img class= "image" src="ressources/bowling.jpg" draggable ="false"/>
+        <!-- About Section -->
+        <section id="about" class="content-section">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="section-content">
+                <h3 class="highlight-text">Software engineer by formation, video editor by passion and full-time creator by destiny</h3>
+                <p>
+                    Starting my career in IT has always been what I seeked for because as a creative mind the only limit to creativity is the ability to express it. Becoming an engineer allowed me to understand everything I needed to in order to create websites, apps and basically anything digital related. The next step after that in order to fulfill my creative skillset was to learn video editing which in today's world is a must have to expand the audience that anyone's creativity was designed to reach.
+                </p>
             </div>
         </section>
 
-        <section id="socials">
-            <!-- Socials Section Content -->
-            <h1>Find me</h1>
-            <ul>
-                 <li><img src="ressources/instagram.png"><a href="https://www.instagram.com/moderndaysamurai45/">Instagram<a/></li>
-                <li><img src="ressources/tiktok.png"><a href="https://www.tiktok.com/@moderndaysamurai45">TikTok<a/></li>
-                <li><img src="ressources/youtube.png"><a href="https://www.youtube.com/@ModernDaySamurai-bh8zk">Youtube<a/></li>
-                <li><img src="ressources/mail.png"><a href="mailto:moderndaysamurai45@outlook.com">Mail<a/></li> 
-            </ul>
+        <!-- Profile Image Section -->
+        <section id="me" class="image-section">
+            <div class="image-container">
+                <img src="ressources/me.jpg" alt="Baptiste Pierre">
+                <div class="image-overlay"></div>
+            </div>
         </section>
 
+        <!-- Services Section -->
+        <section id="products" class="content-section">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">What I Offer</h2>
+            </div>
+            <div class="section-content">
+                <h3 class="highlight-text">You need me you just don't know it yet</h3>
+                <p>
+                    Being able to make decisions and take initiatives for the benefit of my employer has given me the prestigious position of project leader only 6 months after starting my first ever IT job but no matter what your desires are my priority.
+                </p>
+                <p>
+                    My ability to work independently allows you to focus on the tasks that really matter like developing your business or creating content.
+                </p>
+            </div>
+        </section>
+
+        <!-- Video Editing Section -->
+        <section class="content-section featured-service">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Video Editing</h2>
+            </div>
+            <div class="section-content">
+                <h3 class="highlight-text">Video editing for social medias</h3>
+                <p>
+                    The commissions I'm currently accepting revolve around video editing ranging from TikToks to YouTube videos no matter the format you'd like.
+                </p>
+                <p>
+                    The price depending on the amount of work that has to be done I'll ask you to contact me via <a href="mailto:moderndaysamurai45@outlook.com" class="inline-link">email</a> to further discuss your project.
+                </p>
+                <a href="mailto:moderndaysamurai45@outlook.com" class="cta-button">
+                    <span>Get Started</span>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio-section">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">Portfolio</h2>
+            </div>
+            <div class="portfolio-container">
+                <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+                    <img class="image" src="ressources/banner.jpg" draggable="false" alt="Portfolio item"/>
+                    <img class="image" src="ressources/bowling.jpg" draggable="false" alt="Portfolio item"/>
+                    <img class="image" src="ressources/bowling.jpg" draggable="false" alt="Portfolio item"/>
+                    <img class="image" src="ressources/bowling.jpg" draggable="false" alt="Portfolio item"/>
+                    <img class="image" src="ressources/bowling.jpg" draggable="false" alt="Portfolio item"/>
+                    <img class="image" src="ressources/bowling.jpg" draggable="false" alt="Portfolio item"/>
+                </div>
+            </div>
+            <p class="portfolio-hint">← Drag to explore →</p>
+        </section>
+
+        <!-- Socials Section -->
+        <section id="socials" class="socials-section">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Let's Connect</h2>
+            </div>
+            <div class="socials-content">
+                <h3 class="highlight-text">Find me on social media</h3>
+                <ul class="social-links">
+                    <li class="social-item">
+                        <a href="https://www.instagram.com/moderndaysamurai45/" target="_blank">
+                            <img src="ressources/instagram.png" alt="Instagram">
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                    <li class="social-item">
+                        <a href="https://www.tiktok.com/@moderndaysamurai45" target="_blank">
+                            <img src="ressources/tiktok.png" alt="TikTok">
+                            <span>TikTok</span>
+                        </a>
+                    </li>
+                    <li class="social-item">
+                        <a href="https://www.youtube.com/@ModernDaySamurai-bh8zk" target="_blank">
+                            <img src="ressources/youtube.png" alt="YouTube">
+                            <span>YouTube</span>
+                        </a>
+                    </li>
+                    <li class="social-item">
+                        <a href="mailto:moderndaysamurai45@outlook.com">
+                            <img src="ressources/mail.png" alt="Email">
+                            <span>Email</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
     </div>
+
+    <!-- Footer -->
     <footer>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#socials">Socials</a></li>
-            </ul>
-        </nav>
-        <p>&copy;All rights reserved.</p>
+        <div class="footer-content">
+            <p class="footer-text">&copy; 2024 Baptiste Pierre. All rights reserved.</p>
+            <nav class="footer-nav">
+                <a href="#about">About</a>
+                <a href="#products">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#socials">Contact</a>
+            </nav>
+        </div>
     </footer>
-</body>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const sections = document.querySelectorAll('section');
+    <script>
+        // Smooth scroll animations on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            // Hero animation
+            setTimeout(() => {
+                document.querySelector('.hero-section').classList.add('loaded');
+            }, 100);
 
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    entry.target.classList.remove('fade-out');
+            // Intersection Observer for scroll animations
+            const sections = document.querySelectorAll('.content-section, .image-section, .portfolio-section, .socials-section');
+
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Navbar scroll effect
+            let lastScroll = 0;
+            const nav = document.querySelector('.main-nav');
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+
+                if (currentScroll > 100) {
+                    nav.classList.add('scrolled');
                 } else {
-                    entry.target.classList.remove('fade-in');
-                    entry.target.classList.add('fade-out');
+                    nav.classList.remove('scrolled');
+                }
+
+                lastScroll = currentScroll;
+            });
+
+            // Parallax effect for hero
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero-section');
+                if (hero && scrolled < window.innerHeight) {
+                    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                    hero.style.opacity = 1 - (scrolled / window.innerHeight);
                 }
             });
-        }, { threshold: 0.5 });
-
-        sections.forEach(section => {
-            observer.observe(section);
         });
-    });
-</script>
 
-<script>
-    const track = document.getElementById("image-track");
+        // Portfolio draggable gallery
+        const track = document.getElementById("image-track");
 
-    const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
+        const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
 
-    const handleOnUp = () => {
-      track.dataset.mouseDownAt = "0";  
-      track.dataset.prevPercentage = (typeof track.dataset.percentage === 'undefined') ? 0 : track.dataset.percentage;
-    }
+        const handleOnUp = () => {
+            track.dataset.mouseDownAt = "0";
+            track.dataset.prevPercentage = (typeof track.dataset.percentage === 'undefined') ? 0 : track.dataset.percentage;
+        }
 
-    const handleOnMove = e => {
-      if(track.dataset.mouseDownAt === "0") return;
-      
-      const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
-            maxDelta = window.innerWidth / 2;
-      
-      const percentage = (mouseDelta / maxDelta) * -100,
-            nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
-            nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
-      
-      track.dataset.percentage = nextPercentage;
-      
-      track.animate({
-        transform: `translate(${nextPercentage}%, -50%)`
-      }, { duration: 1200, fill: "forwards" });
-      
-      for(const image of track.getElementsByClassName("image")) {
-        image.animate({
-          objectPosition: `${100 + nextPercentage}% center`
-        }, { duration: 1200, fill: "forwards" });
-      }
-    }
+        const handleOnMove = e => {
+            if (track.dataset.mouseDownAt === "0") return;
 
-    /* -- Had to add extra lines for touch events -- */
+            const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+                maxDelta = window.innerWidth / 2;
 
-    window.onmousedown = e => handleOnDown(e);
+            const percentage = (mouseDelta / maxDelta) * -100,
+                nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
+                nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
 
-    window.ontouchstart = e => handleOnDown(e.touches[0]);
+            track.dataset.percentage = nextPercentage;
 
-    window.onmouseup = e => handleOnUp(e);
+            track.animate({
+                transform: `translate(${nextPercentage}%, -50%)`
+            }, { duration: 1200, fill: "forwards" });
 
-    window.ontouchend = e => handleOnUp(e.touches[0]);
+            for (const image of track.getElementsByClassName("image")) {
+                image.animate({
+                    objectPosition: `${100 + nextPercentage}% center`
+                }, { duration: 1200, fill: "forwards" });
+            }
+        }
 
-    window.onmousemove = e => handleOnMove(e);
-
-    window.ontouchmove = e => handleOnMove(e.touches[0]);
-</script>
+        // Mouse events
+        window.onmousedown = e => handleOnDown(e);
+        window.ontouchstart = e => handleOnDown(e.touches[0]);
+        window.onmouseup = e => handleOnUp(e);
+        window.ontouchend = e => handleOnUp(e.touches[0]);
+        window.onmousemove = e => handleOnMove(e);
+        window.ontouchmove = e => handleOnMove(e.touches[0]);
+    </script>
+</body>
 
 </html>
