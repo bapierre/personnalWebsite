@@ -2,10 +2,15 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'ModernDaySamurai - Baptiste Pierre',
-  description: 'Software engineer by formation, video editor by passion and full-time creator by destiny',
-  keywords: ['Baptiste Pierre', 'video editing', 'software engineer', 'portfolio'],
+  title: 'Vanpelt\'s ventures',
+  description: 'Traveler by desire, software engineer by choice, entrepreneur by passion',
+  keywords: ['Baptiste Pierre', 'Vanpelt', 'VanpeltVenures', 'portfolio', 'entrepreneur'],
   authors: [{ name: 'Baptiste Pierre' }],
+  icons: {
+    icon: '/assets/logo.png',
+    shortcut: '/assets/logo.png',
+    apple: '/assets/logo.png',
+  },
 }
 
 export default function RootLayout({

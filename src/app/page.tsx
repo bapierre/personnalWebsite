@@ -1,9 +1,14 @@
 'use client'
 
+import GridBlock from '@/components/bento/GridBlock'
+import SocialCard from '@/components/bento/SocialCard'
 import HeroCard from '@/components/bento/HeroCard'
 import ProjectCard from '@/components/bento/ProjectCard'
-import SocialCard from '@/components/bento/SocialCard'
-import StatsCard from '@/components/bento/StatsCard'
+import EmptyCard from '@/components/bento/EmptyCard'
+import SeparatorCard from '@/components/bento/SeparatorCard'
+import PlaceholderCard from '@/components/bento/PlaceholderCard'
+import TravelCard from '@/components/bento/TravelCard'
+import MRRCard from '@/components/bento/MRRCard'
 
 export default function Home() {
   return (
@@ -17,92 +22,129 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-radial from-silver/12 via-zinc-400/6 to-transparent rounded-full blur-3xl animate-pulse delay-500 opacity-50"></div>
       </div>
 
-      <div className="relative z-10 h-screen grid grid-cols-6 grid-rows-4 gap-4 p-4">
-
-        {/* Hero Card - Top Left */}
-        <div className="col-span-3 row-span-2">
-          <HeroCard />
-        </div>
-
-        {/* Profile Image - Top Right */}
+      <div
+        className="relative z-10 h-screen grid gap-2 p-4"
+        style={{
+          gridTemplateColumns: 'repeat(16, 1fr)',
+          gridTemplateRows: 'repeat(9, 1fr)'
+        }}
+      >
+        {/* A1-B2 Merged: X Account (2x2) */}
         <div className="col-span-2 row-span-2">
-          <div className="h-full bg-gradient-to-br from-white/85 to-gray-100/80 backdrop-blur-lg border border-white/50 rounded-3xl p-3 flex items-center justify-center overflow-hidden shadow-2xl hover:shadow-white/20 hover:border-white/60 transition-all duration-500 relative group">
-            {/* Glass reflection overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-40 rounded-3xl pointer-events-none group-hover:opacity-60 transition-opacity duration-500"></div>
-            <img
-              src="/assets/me.jpg"
-              alt="Baptiste Pierre"
-              className="relative z-10 w-full h-full object-cover rounded-2xl shadow-lg"
-            />
-          </div>
+          <SocialCard
+            platform="x"
+            link="https://x.com/VanpeltVentures"
+          />
         </div>
 
-        {/* Stats Card 1 */}
-        <div className="col-span-1 row-span-1">
-          <StatsCard
-            number="3+"
-            label="Years Experience"
+        {/* Row 1 continues */}
+
+        {/* C1-F2 Merged: Nomad Maxing (4x2) */}
+        <div className="col-span-4 row-span-2">
+          <ProjectCard
+            title="Nomad Maxing"
+            description="Coming soon - Digital nomad lifestyle platform"
+            link=""
             color="orange"
           />
         </div>
 
-        {/* Stats Card 2 */}
-        <div className="col-span-1 row-span-1">
-          <StatsCard
-            number="5+"
-            label="Projects"
+        {/* G1-H2 Merged: Instagram (2x2) */}
+        <div className="col-span-2 row-span-2">
+          <SocialCard
+            platform="instagram"
+            link="https://instagram.com/vanpeltventures"
+          />
+        </div>
+
+        {/* I1-I2 Merged: Separator (1x2) */}
+        <div className="col-span-1 row-span-2">
+          <SeparatorCard />
+        </div>
+
+        {/* J1-M2 Merged: VanpeltVentures.org (4x2) */}
+        <div className="col-span-4 row-span-2">
+          <ProjectCard
+            title="VanpeltVentures.org"
+            description="Personal blog and entrepreneurial journey"
+            link="https://vanpeltventures.org"
             color="purple"
           />
         </div>
 
-        {/* Project Card 1 - Curify */}
-        <div className="col-span-2 row-span-1">
-          <ProjectCard
-            title="Curify.be"
-            description="Healthcare platform revolutionizing patient care"
-            link="https://curify.be"
+        {/* N1-P3 Merged: Contact for Projects (3x3) */}
+        <div className="col-span-3 row-span-3">
+          <PlaceholderCard
+            title="Need Help?"
+            subtitle="Send me an email for your project"
+            icon="📧"
             color="blue"
           />
         </div>
 
-        {/* Social Cards Row */}
-        <div className="col-span-1 row-span-1">
-          <SocialCard
-            platform="github"
-            link="https://github.com/moderndaysamurai45"
-          />
+        {/* Row 2 continues (A2, B2 are part of merged block above) */}
+        {/* C2-F2 are part of the Nomad Maxing block above */}
+        {/* G2-H2 are part of the Instagram block above */}
+        {/* I2 is part of the I1-I2 separator above */}
+        {/* J2-M2 are part of the VanpeltVentures block above */}
+        {/* N2-P2 are part of the placeholder block above */}
+
+        {/* Row 3 */}
+
+        {/* A3-C5 Merged: MRR Tracker (3x3) */}
+        <div className="col-span-3 row-span-3">
+          <MRRCard />
         </div>
 
-        <div className="col-span-1 row-span-1">
-          <SocialCard
-            platform="linkedin"
-            link="https://linkedin.com/in/baptistepierre"
-          />
+        {/* D3-M7 Merged: Hero Section (10x5) */}
+        <div className="col-span-10 row-span-5">
+          <HeroCard />
         </div>
 
-        <div className="col-span-1 row-span-1">
-          <SocialCard
-            platform="x"
-            link="https://x.com/moderndaysamurai45"
-          />
+        {/* N3-P3 are part of the placeholder block above */}
+
+        {/* Row 4 */}
+        {/* A4-C4 are part of the A3-C5 placeholder above */}
+
+        {/* D4-M4 are now part of the hero section above */}
+
+        {/* N4-P9 Merged: Travel Itinerary (3x6) */}
+        <div className="col-span-3 row-span-6">
+          <TravelCard link="https://x.com/VanpeltVentures" />
         </div>
 
-        <div className="col-span-1 row-span-1">
-          <SocialCard
-            platform="instagram"
-            link="https://instagram.com/moderndaysamurai45"
-          />
+        {/* Row 5 - (A5-C5 part of A3-C5 placeholder, D5-M5 are part of merged hero, N5-P5 part of placeholder) */}
+        {/* A5-C5 are part of the A3-C5 placeholder above */}
+        {/* D5-M5 are part of the hero block above */}
+        {/* N5-P5 are part of the placeholder block above */}
+
+        {/* Row 6 - (A6-A7 separator, B6-C6 part of YouTube, D6-M6 are part of merged hero, N6-P6 part of placeholder) */}
+
+        {/* A6-A7 Merged: Separator (1x2) */}
+        <div className="col-span-1 row-span-2">
+          <SeparatorCard />
         </div>
 
-        <div className="col-span-1 row-span-1">
+        {/* B6-C7 Merged: YouTube (2x2) */}
+        <div className="col-span-2 row-span-2">
           <SocialCard
             platform="youtube"
-            link="https://youtube.com/@ModernDaySamurai-bh8zk"
+            link="https://youtube.com/@vanpeltventures"
           />
         </div>
 
-        {/* Project Card 2 - Refinedware */}
-        <div className="col-span-2 row-span-1">
+        {/* D6-M6 are part of the hero block above */}
+        {/* N6-P6 are part of the placeholder block above */}
+
+        {/* Row 7 - (A7 part of A6-A7 separator, B7-C7 part of YouTube, D7-M7 are part of merged hero, N7-P7 part of placeholder) */}
+        {/* A7 is part of the A6-A7 separator above */}
+        {/* B7-C7 are part of the YouTube block above */}
+        {/* D7-M7 are part of the hero block above */}
+        {/* N7-P7 are part of the placeholder block above */}
+
+        {/* Row 8 */}
+        {/* A8-D9 Merged: Refinedware.com (4x2) */}
+        <div className="col-span-4 row-span-2">
           <ProjectCard
             title="Refinedware.com"
             description="Software solutions for modern businesses"
@@ -111,46 +153,45 @@ export default function Home() {
           />
         </div>
 
-        {/* Contact Card */}
-        <div className="col-span-3 row-span-1">
-          <div className="h-full bg-gradient-to-r from-orange-500/75 to-red-500/80 backdrop-blur-lg border border-white/50 rounded-3xl p-4 flex flex-col justify-center items-center text-white shadow-2xl shadow-orange-200/30 hover:shadow-white/20 hover:border-white/60 transition-all duration-500 overflow-hidden relative group">
-            {/* Glass reflection overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-40 rounded-3xl pointer-events-none group-hover:opacity-60 transition-opacity duration-500"></div>
-            <div className="relative z-10 text-center">
-              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mb-2 mx-auto">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-black mb-2 tracking-tight">Have a project in mind?</h3>
-              <a
-                href="mailto:moderndaysamurai45@outlook.com"
-                className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl font-bold hover:bg-white/30 transition-all duration-300 hover:scale-105 text-sm shadow-lg inline-block truncate max-w-full"
-              >
-                moderndaysamurai45@outlook.com
-              </a>
-            </div>
-          </div>
+        {/* E8-F9 Merged: GitHub (2x2) */}
+        <div className="col-span-2 row-span-2">
+          <SocialCard
+            platform="github"
+            link="https://github.com/bapierre"
+          />
         </div>
 
-        {/* Project Card 3 - VanpeltVentures */}
-        <div className="col-span-2 row-span-1">
+        {/* G8-G9 Merged: Separator (1x2) */}
+        <div className="col-span-1 row-span-2">
+          <SeparatorCard />
+        </div>
+
+        {/* H8-K9 Merged: Curify (4x2) */}
+        <div className="col-span-4 row-span-2">
           <ProjectCard
-            title="VanpeltVentures.org"
-            description="Investment and venture capital platform"
-            link="https://vanpeltventures.org"
-            color="indigo"
+            title="Curify"
+            description="AI-powered content curation platform"
+            link="https://curify.app"
+            color="blue"
           />
         </div>
 
-        {/* Future Stats Card */}
-        <div className="col-span-1 row-span-1">
-          <StatsCard
-            number="100%"
-            label="Client Satisfaction"
-            color="green"
+        {/* L8-M9 Merged: LinkedIn (2x2) */}
+        <div className="col-span-2 row-span-2">
+          <SocialCard
+            platform="linkedin"
+            link="https://linkedin.com/in/baptistepierre"
           />
         </div>
+        {/* N8-P8 are part of the placeholder block above */}
+
+        {/* Row 9 - (A9-D9 part of Refinedware, E9-F9 part of GitHub, G9 part of G8-G9 separator, H9-K9 part of Curify, L9-M9 part of LinkedIn, N9-P9 part of placeholder) */}
+        {/* A9-D9 are part of the Refinedware block above */}
+        {/* E9-F9 are part of the GitHub block above */}
+        {/* G9 is part of the G8-G9 separator above */}
+        {/* H9-K9 are part of the Curify block above */}
+        {/* L9-M9 are part of the LinkedIn block above */}
+        {/* N9-P9 are part of the placeholder block above */}
 
       </div>
     </div>

@@ -1,7 +1,7 @@
 {
-  "name": "personnalwebsite",
+  "name": "vanpeltportfolio",
   "version": "1.0.0",
-  "description": "Baptiste Pierre's Personal Website - Next.js Version",
+  "description": "Baptiste Pierre aka Vanpelt's portfolio website",
   "private": true,
   "scripts": {
     "dev": "next dev",
