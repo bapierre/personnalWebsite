@@ -1,10 +1,8 @@
 'use client'
 
-import GridBlock from '@/components/bento/GridBlock'
 import SocialCard from '@/components/bento/SocialCard'
 import HeroCard from '@/components/bento/HeroCard'
-import EmptyCard from '@/components/bento/EmptyCard'
-import PlaceholderCard from '@/components/bento/PlaceholderCard'
+import MailCard from '@/components/bento/MailCard'
 import TravelCard from '@/components/bento/TravelCard'
 import MRRCard from '@/components/bento/MRRCard'
 import CurifyCard from '@/components/bento/CurifyCard'
@@ -61,12 +59,7 @@ export default function Home() {
 
         {/* N1-P3 Merged: Contact for Projects (3x3) */}
         <div className="col-span-3 row-span-3">
-          <PlaceholderCard
-            title="Need Help?"
-            subtitle="Send me an email for your project"
-            icon="📧"
-            color="blue"
-          />
+          <MailCard email="baptiste@refinedware.com" />
         </div>
 
         {/* Row 2 continues (A2, B2 are part of merged block above) */}
