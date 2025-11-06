@@ -3,11 +3,14 @@
 import GridBlock from '@/components/bento/GridBlock'
 import SocialCard from '@/components/bento/SocialCard'
 import HeroCard from '@/components/bento/HeroCard'
-import ProjectCard from '@/components/bento/ProjectCard'
 import EmptyCard from '@/components/bento/EmptyCard'
 import PlaceholderCard from '@/components/bento/PlaceholderCard'
 import TravelCard from '@/components/bento/TravelCard'
 import MRRCard from '@/components/bento/MRRCard'
+import CurifyCard from '@/components/bento/CurifyCard'
+import RefinedwareCard from '@/components/bento/RefinedwareCard'
+import NomadMaxingCard from '@/components/bento/NomadMaxingCard'
+import VanpeltVenturesCard from '@/components/bento/VanpeltVenturesCard'
 
 export default function Home() {
   return (
@@ -40,12 +43,7 @@ export default function Home() {
 
         {/* C1-F2 Merged: Nomad Maxing (4x2) */}
         <div className="col-span-4 row-span-2">
-          <ProjectCard
-            title="Nomad Maxing"
-            description="Coming soon - Digital nomad lifestyle platform"
-            link=""
-            color="orange"
-          />
+          <NomadMaxingCard />
         </div>
 
         {/* G1-H2 Merged: Instagram (2x2) */}
@@ -58,12 +56,7 @@ export default function Home() {
 
         {/* I1-M2 Merged: VanpeltVentures.org (5x2) */}
         <div className="col-span-5 row-span-2">
-          <ProjectCard
-            title="VanpeltVentures.org"
-            description="Personal blog and entrepreneurial journey"
-            link="https://vanpeltventures.org"
-            color="purple"
-          />
+          <VanpeltVenturesCard link="https://vanpeltventures.org" />
         </div>
 
         {/* N1-P3 Merged: Contact for Projects (3x3) */}
@@ -132,12 +125,7 @@ export default function Home() {
         {/* Row 8 */}
         {/* A8-D9 Merged: Refinedware.com (4x2) */}
         <div className="col-span-4 row-span-2">
-          <ProjectCard
-            title="Refinedware.com"
-            description="Software solutions for modern businesses"
-            link="https://refinedware.com"
-            color="green"
-          />
+          <RefinedwareCard link="https://refinedware.com" />
         </div>
 
         {/* E8-F9 Merged: GitHub (2x2) */}
@@ -150,12 +138,7 @@ export default function Home() {
 
         {/* G8-K9 Merged: Curify (5x2) */}
         <div className="col-span-5 row-span-2">
-          <ProjectCard
-            title="Curify"
-            description="AI-powered content curation platform"
-            link="https://curify.app"
-            color="blue"
-          />
+          <CurifyCard link="https://curify.app" />
         </div>
 
         {/* L8-M9 Merged: LinkedIn (2x2) */}
