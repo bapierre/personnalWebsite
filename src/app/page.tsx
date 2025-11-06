@@ -5,7 +5,6 @@ import SocialCard from '@/components/bento/SocialCard'
 import HeroCard from '@/components/bento/HeroCard'
 import ProjectCard from '@/components/bento/ProjectCard'
 import EmptyCard from '@/components/bento/EmptyCard'
-import SeparatorCard from '@/components/bento/SeparatorCard'
 import PlaceholderCard from '@/components/bento/PlaceholderCard'
 import TravelCard from '@/components/bento/TravelCard'
 import MRRCard from '@/components/bento/MRRCard'
@@ -57,13 +56,8 @@ export default function Home() {
           />
         </div>
 
-        {/* I1-I2 Merged: Separator (1x2) */}
-        <div className="col-span-1 row-span-2">
-          <SeparatorCard />
-        </div>
-
-        {/* J1-M2 Merged: VanpeltVentures.org (4x2) */}
-        <div className="col-span-4 row-span-2">
+        {/* I1-M2 Merged: VanpeltVentures.org (5x2) */}
+        <div className="col-span-5 row-span-2">
           <ProjectCard
             title="VanpeltVentures.org"
             description="Personal blog and entrepreneurial journey"
@@ -85,8 +79,7 @@ export default function Home() {
         {/* Row 2 continues (A2, B2 are part of merged block above) */}
         {/* C2-F2 are part of the Nomad Maxing block above */}
         {/* G2-H2 are part of the Instagram block above */}
-        {/* I2 is part of the I1-I2 separator above */}
-        {/* J2-M2 are part of the VanpeltVentures block above */}
+        {/* I2-M2 are part of the VanpeltVentures block above */}
         {/* N2-P2 are part of the placeholder block above */}
 
         {/* Row 3 */}
@@ -118,15 +111,10 @@ export default function Home() {
         {/* D5-M5 are part of the hero block above */}
         {/* N5-P5 are part of the placeholder block above */}
 
-        {/* Row 6 - (A6-A7 separator, B6-C6 part of YouTube, D6-M6 are part of merged hero, N6-P6 part of placeholder) */}
+        {/* Row 6 - (A6-C7 YouTube, D6-M6 are part of merged hero, N6-P6 part of placeholder) */}
 
-        {/* A6-A7 Merged: Separator (1x2) */}
-        <div className="col-span-1 row-span-2">
-          <SeparatorCard />
-        </div>
-
-        {/* B6-C7 Merged: YouTube (2x2) */}
-        <div className="col-span-2 row-span-2">
+        {/* A6-C7 Merged: YouTube (3x2) */}
+        <div className="col-span-3 row-span-2">
           <SocialCard
             platform="youtube"
             link="https://youtube.com/@vanpeltventures"
@@ -136,9 +124,8 @@ export default function Home() {
         {/* D6-M6 are part of the hero block above */}
         {/* N6-P6 are part of the placeholder block above */}
 
-        {/* Row 7 - (A7 part of A6-A7 separator, B7-C7 part of YouTube, D7-M7 are part of merged hero, N7-P7 part of placeholder) */}
-        {/* A7 is part of the A6-A7 separator above */}
-        {/* B7-C7 are part of the YouTube block above */}
+        {/* Row 7 - (A7-C7 part of YouTube, D7-M7 are part of merged hero, N7-P7 part of placeholder) */}
+        {/* A7-C7 are part of the YouTube block above */}
         {/* D7-M7 are part of the hero block above */}
         {/* N7-P7 are part of the placeholder block above */}
 
@@ -161,13 +148,8 @@ export default function Home() {
           />
         </div>
 
-        {/* G8-G9 Merged: Separator (1x2) */}
-        <div className="col-span-1 row-span-2">
-          <SeparatorCard />
-        </div>
-
-        {/* H8-K9 Merged: Curify (4x2) */}
-        <div className="col-span-4 row-span-2">
+        {/* G8-K9 Merged: Curify (5x2) */}
+        <div className="col-span-5 row-span-2">
           <ProjectCard
             title="Curify"
             description="AI-powered content curation platform"
@@ -185,11 +167,10 @@ export default function Home() {
         </div>
         {/* N8-P8 are part of the placeholder block above */}
 
-        {/* Row 9 - (A9-D9 part of Refinedware, E9-F9 part of GitHub, G9 part of G8-G9 separator, H9-K9 part of Curify, L9-M9 part of LinkedIn, N9-P9 part of placeholder) */}
+        {/* Row 9 - (A9-D9 part of Refinedware, E9-F9 part of GitHub, G9-K9 part of Curify, L9-M9 part of LinkedIn, N9-P9 part of placeholder) */}
         {/* A9-D9 are part of the Refinedware block above */}
         {/* E9-F9 are part of the GitHub block above */}
-        {/* G9 is part of the G8-G9 separator above */}
-        {/* H9-K9 are part of the Curify block above */}
+        {/* G9-K9 are part of the Curify block above */}
         {/* L9-M9 are part of the LinkedIn block above */}
         {/* N9-P9 are part of the placeholder block above */}
 

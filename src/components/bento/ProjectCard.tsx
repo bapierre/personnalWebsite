@@ -21,7 +21,7 @@ export default function ProjectCard({ title, description, link, color }: Project
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className={`aspect-[2/1] h-full bg-gradient-to-br ${colorClasses[color]} backdrop-blur-lg border border-white/60 rounded-3xl p-4 flex flex-col justify-between text-white transition-all duration-500 hover:scale-[1.02] hover:shadow-white/30 hover:border-white/70 group cursor-pointer shadow-2xl shadow-black/20 overflow-hidden relative`}
+      className={`h-full bg-gradient-to-br ${colorClasses[color]} backdrop-blur-lg border border-white/60 rounded-3xl p-4 flex flex-col justify-between text-white transition-all duration-500 hover:scale-[1.02] hover:shadow-white/30 hover:border-white/70 group cursor-pointer shadow-2xl shadow-black/20 overflow-hidden relative`}
     >
       {/* Glass reflection overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-40 rounded-3xl pointer-events-none group-hover:opacity-60 transition-opacity duration-500"></div>
