@@ -2,15 +2,19 @@
 
 interface TravelCardProps {
   link: string
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
-export default function TravelCard({ link }: TravelCardProps) {
+export default function TravelCard({ link, onMouseEnter, onMouseLeave }: TravelCardProps) {
   return (
     <a
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="h-full bg-gradient-to-br from-purple-500/75 to-indigo-500/80 backdrop-blur-lg border border-white/50 rounded-3xl p-6 flex flex-col justify-center text-white shadow-2xl hover:shadow-purple-200/30 hover:border-white/60 transition-all duration-500 overflow-hidden relative group cursor-pointer"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className="h-full bg-gradient-to-br from-purple-500/75 to-indigo-500/80 backdrop-blur-lg border border-white/50 rounded-3xl p-6 flex flex-col justify-center text-white shadow-2xl hover:shadow-purple-200/30 hover:border-white/60 transition-all duration-500 relative group overflow-hidden cursor-pointer hover:scale-[1.02]"
     >
       {/* Glass reflection overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-40 rounded-3xl pointer-events-none group-hover:opacity-60 transition-opacity duration-500"></div>

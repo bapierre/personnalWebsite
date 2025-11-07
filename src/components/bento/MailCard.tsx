@@ -2,15 +2,19 @@
 
 interface MailCardProps {
   email: string
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
-export default function MailCard({ email }: MailCardProps) {
+export default function MailCard({ email, onMouseEnter, onMouseLeave }: MailCardProps) {
   const subject = encodeURIComponent("IT Project Inquiry")
   const body = encodeURIComponent("Hi Baptiste,\n\nI have an IT project and would like to discuss working with you.\n\n")
 
   return (
     <a
       href={`mailto:${email}?subject=${subject}&body=${body}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       className="h-full bg-gradient-to-br from-blue-500/75 to-indigo-500/80 backdrop-blur-lg border border-white/50 rounded-3xl p-6 flex flex-col justify-center items-center text-white shadow-2xl hover:shadow-blue-200/30 hover:border-white/60 transition-all duration-500 overflow-hidden relative group cursor-pointer hover:scale-[1.02]"
     >
       {/* Glass reflection overlay */}

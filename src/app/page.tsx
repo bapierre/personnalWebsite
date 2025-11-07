@@ -1,7 +1,7 @@
 'use client'
 
 import SocialCard from '@/components/bento/SocialCard'
-import HeroCard from '@/components/bento/HeroCard'
+import DynamicHeroCard from '@/components/bento/DynamicHeroCard'
 import MailCard from '@/components/bento/MailCard'
 import TravelCard from '@/components/bento/TravelCard'
 import MRRCard from '@/components/bento/MRRCard'
@@ -9,8 +9,11 @@ import CurifyCard from '@/components/bento/CurifyCard'
 import RefinedwareCard from '@/components/bento/RefinedwareCard'
 import NomadMaxingCard from '@/components/bento/NomadMaxingCard'
 import VanpeltVenturesCard from '@/components/bento/VanpeltVenturesCard'
+import { useHoverState } from '@/hooks/useHoverState'
 
 export default function Home() {
+  const { currentHover, handleMouseEnter, handleMouseLeave } = useHoverState()
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Optimized Background */}
@@ -41,7 +44,9 @@ export default function Home() {
 
         {/* C1-F2 Merged: Nomad Maxing (4x2) */}
         <div className="col-span-4 row-span-2">
-          <NomadMaxingCard />
+          <NomadMaxingCard 
+            onMouseEnter={() => handleMouseEnter('nomadmaxing')}
+            onMouseLeave={() => handleMouseLeave()}/>
         </div>
 
         {/* G1-H2 Merged: Instagram (2x2) */}
@@ -54,12 +59,18 @@ export default function Home() {
 
         {/* I1-M2 Merged: VanpeltVentures.org (5x2) */}
         <div className="col-span-5 row-span-2">
-          <VanpeltVenturesCard link="https://vanpeltventures.org" />
+          <VanpeltVenturesCard
+           link="https://vanpeltventures.org"
+            onMouseEnter={() => handleMouseEnter('vanpeltventures')}
+            onMouseLeave={() => handleMouseLeave()} />
         </div>
 
         {/* N1-P3 Merged: Contact for Projects (3x3) */}
         <div className="col-span-3 row-span-3">
-          <MailCard email="baptiste@refinedware.com" />
+          <MailCard 
+            email="baptiste@refinedware.com"
+            onMouseEnter={() => handleMouseEnter('mail')}
+            onMouseLeave={() => handleMouseLeave()} />
         </div>
 
         {/* Row 2 continues (A2, B2 are part of merged block above) */}
@@ -72,12 +83,14 @@ export default function Home() {
 
         {/* A3-C5 Merged: MRR Tracker (3x3) */}
         <div className="col-span-3 row-span-3">
-          <MRRCard />
+          <MRRCard 
+            onMouseEnter={() => handleMouseEnter('mrr')}
+            onMouseLeave={() => handleMouseLeave()}/>
         </div>
 
         {/* D3-M7 Merged: Hero Section (10x5) */}
         <div className="col-span-10 row-span-5">
-          <HeroCard />
+          <DynamicHeroCard currentHover={currentHover} />
         </div>
 
         {/* N3-P3 are part of the placeholder block above */}
@@ -89,7 +102,10 @@ export default function Home() {
 
         {/* N4-P9 Merged: Travel Itinerary (3x6) */}
         <div className="col-span-3 row-span-6">
-          <TravelCard link="https://x.com/VanpeltVentures" />
+          <TravelCard 
+            link="https://x.com/VanpeltVentures" 
+            onMouseEnter={() => handleMouseEnter('travel')}
+            onMouseLeave={() => handleMouseLeave()}/>
         </div>
 
         {/* Row 5 - (A5-C5 part of A3-C5 placeholder, D5-M5 are part of merged hero, N5-P5 part of placeholder) */}
@@ -118,7 +134,10 @@ export default function Home() {
         {/* Row 8 */}
         {/* A8-D9 Merged: Refinedware.com (4x2) */}
         <div className="col-span-4 row-span-2">
-          <RefinedwareCard link="https://refinedware.com" />
+          <RefinedwareCard
+            link="https://refinedware.com"
+            onMouseEnter={() => handleMouseEnter('refinedware')}
+            onMouseLeave={() => handleMouseLeave()} />
         </div>
 
         {/* E8-F9 Merged: GitHub (2x2) */}
@@ -131,7 +150,11 @@ export default function Home() {
 
         {/* G8-K9 Merged: Curify (5x2) */}
         <div className="col-span-5 row-span-2">
-          <CurifyCard link="https://curify.app" />
+          <CurifyCard
+            link="https://curify.app"
+            onMouseEnter={() => handleMouseEnter('curify')}
+            onMouseLeave={() => handleMouseLeave()}
+          />
         </div>
 
         {/* L8-M9 Merged: LinkedIn (2x2) */}

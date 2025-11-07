@@ -2,14 +2,18 @@
 
 interface VanpeltVenturesCardProps {
   link: string
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
-export default function VanpeltVenturesCard({ link }: VanpeltVenturesCardProps) {
+export default function VanpeltVenturesCard({ link, onMouseEnter, onMouseLeave }: VanpeltVenturesCardProps) {
   return (
     <a
       href={link}
       target="_blank"
       rel="noopener noreferrer"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       className="h-full bg-gradient-to-br from-purple-500/70 to-purple-600/80 backdrop-blur-lg border border-white/60 rounded-3xl flex items-center justify-center text-white transition-all duration-500 hover:scale-[1.02] hover:shadow-white/30 hover:border-white/70 group cursor-pointer shadow-2xl shadow-black/20 overflow-hidden relative"
       style={{
         backgroundImage: `url('/assets/vanpeltVentures.png')`,

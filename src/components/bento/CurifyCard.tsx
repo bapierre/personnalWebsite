@@ -2,14 +2,18 @@
 
 interface CurifyCardProps {
   link: string
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
-export default function CurifyCard({ link }: CurifyCardProps) {
+export default function CurifyCard({ link, onMouseEnter, onMouseLeave }: CurifyCardProps) {
   return (
     <a
       href={link}
       target="_blank"
       rel="noopener noreferrer"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       className="h-full bg-gradient-to-br from-blue-500/70 to-blue-600/80 backdrop-blur-lg border border-white/60 rounded-3xl flex items-center justify-center text-white transition-all duration-500 hover:scale-[1.02] hover:shadow-white/30 hover:border-white/70 group cursor-pointer shadow-2xl shadow-black/20 overflow-hidden relative"
       style={{
         backgroundImage: `url('/assets/curify.png')`,
