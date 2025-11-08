@@ -94,6 +94,57 @@ export default function DynamicHeroCard({ currentHover }: DynamicHeroCardProps) 
     backgroundColor: "bg-gradient-to-br from-blue-500/75 to-indigo-500/80 backdrop-blur-lg"
   }
 
+  // Social media content
+  const xContent = {
+    title: "Follow me on X (Twitter) for startup updates",
+    subtitle: "Daily insights on building in public",
+    location: "🌍 Online",
+    status: "Active daily",
+    description: "I share my entrepreneurial journey, startup tips, and behind-the-scenes content as I build my way to freedom. Join the conversation and connect with other builders!",
+    backgroundImage: undefined,
+    backgroundColor: "bg-gradient-to-br from-sky-500/75 to-blue-600/80 backdrop-blur-lg"
+  }
+
+  const instagramContent = {
+    title: "Behind-the-scenes content on Instagram",
+    subtitle: "Visual stories from my entrepreneurial journey",
+    location: "🌍 Online",
+    status: "Regular updates",
+    description: "Follow along for visual content, travel stories, and glimpses into the life of a digital nomad entrepreneur. See the journey unfold in pictures and videos!",
+    backgroundImage: undefined,
+    backgroundColor: "bg-gradient-to-br from-pink-500/75 to-purple-600/80 backdrop-blur-lg"
+  }
+
+  const youtubeContent = {
+    title: "YouTube: Building in Public Series",
+    subtitle: "Weekly videos documenting my startup journey",
+    location: "🌍 Online",
+    status: "Weekly uploads",
+    description: "In-depth videos about building startups, lessons learned, failures and successes. Watch me build my way to freedom, one project at a time. Subscribe for weekly content!",
+    backgroundImage: undefined,
+    backgroundColor: "bg-gradient-to-br from-red-500/75 to-pink-600/80 backdrop-blur-lg"
+  }
+
+  const linkedinContent = {
+    title: "Professional updates on LinkedIn",
+    subtitle: "Career insights and industry thoughts",
+    location: "🇧🇪 Belgium",
+    status: "Active professionally",
+    description: "Connect with me for professional networking, industry insights, and career updates. I share thoughts on software engineering, entrepreneurship, and the future of remote work.",
+    backgroundImage: undefined,
+    backgroundColor: "bg-gradient-to-br from-blue-600/75 to-indigo-700/80 backdrop-blur-lg"
+  }
+
+  const githubContent = {
+    title: "Open source projects on GitHub",
+    subtitle: "Code, contributions, and collaboration",
+    location: "🌍 Online",
+    status: "Contributing regularly",
+    description: "Check out my code repositories, open source contributions, and development projects. From web applications to useful tools - see what I'm building and how.",
+    backgroundImage: undefined,
+    backgroundColor: "bg-gradient-to-br from-gray-700/75 to-gray-900/80 backdrop-blur-lg"
+  }
+
   // Select content based on hover state
   const content = (() => {switch(currentHover){
     case 'curify':
@@ -110,6 +161,16 @@ export default function DynamicHeroCard({ currentHover }: DynamicHeroCardProps) 
       return mailContent;
     case 'travel':
       return travelContent;
+    case 'x':
+      return xContent;
+    case 'instagram':
+      return instagramContent;
+    case 'youtube':
+      return youtubeContent;
+    case 'linkedin':
+      return linkedinContent;
+    case 'github':
+      return githubContent;
     default:
       return defaultContent;
   }

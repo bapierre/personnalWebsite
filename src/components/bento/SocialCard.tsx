@@ -3,6 +3,8 @@
 interface SocialCardProps {
   platform: 'github' | 'linkedin' | 'x' | 'instagram' | 'youtube'
   link: string
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
 const platformColors = {
@@ -49,12 +51,14 @@ const platformIcons = {
   )
 }
 
-export default function SocialCard({ platform, link }: SocialCardProps) {
+export default function SocialCard({ platform, link, onMouseEnter, onMouseLeave }: SocialCardProps) {
   return (
     <a
       href={link}
       target="_blank"
       rel="noopener noreferrer"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       className={`h-full ${platformColors[platform]} backdrop-blur-lg border border-white/60 rounded-3xl p-1 flex flex-col items-center justify-center text-white transition-all duration-500 hover:scale-105 hover:border-white/70 group shadow-2xl shadow-black/20 hover:shadow-white/30 overflow-hidden relative`}
       aria-label={`Visit my ${platformNames[platform]}`}
     >

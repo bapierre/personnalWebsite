@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import SocialCard from '@/components/bento/SocialCard'
 import DynamicHeroCard from '@/components/bento/DynamicHeroCard'
 import MailCard from '@/components/bento/MailCard'
@@ -10,9 +11,33 @@ import RefinedwareCard from '@/components/bento/RefinedwareCard'
 import NomadMaxingCard from '@/components/bento/NomadMaxingCard'
 import VanpeltVenturesCard from '@/components/bento/VanpeltVenturesCard'
 import { useHoverState } from '@/hooks/useHoverState'
+import { useTapToSelectHover } from '@/hooks/useScrollBasedHover'
 
 export default function Home() {
   const { currentHover, handleMouseEnter, handleMouseLeave } = useHoverState()
+  const { currentTapHover, selectCard, clearSelection } = useTapToSelectHover()
+
+  // Use scroll-based hover on mobile, regular hover on desktop
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const width = window.innerWidth
+      const mobile = width < 768
+      setIsMobile(mobile)
+    }
+
+    // Initial check
+    if (typeof window !== 'undefined') {
+      checkMobile()
+      window.addEventListener('resize', checkMobile)
+
+      return () => window.removeEventListener('resize', checkMobile)
+    }
+  }, [])
+
+  const effectiveHover = isMobile ? currentTapHover : currentHover
+
 
   return (
     <div className="min-h-screen relative lg:overflow-hidden">
@@ -38,6 +63,8 @@ export default function Home() {
           <SocialCard
             platform="x"
             link="https://x.com/VanpeltVentures"
+            onMouseEnter={() => handleMouseEnter('x')}
+            onMouseLeave={() => handleMouseLeave()}
           />
         </div>
 
@@ -55,6 +82,8 @@ export default function Home() {
           <SocialCard
             platform="instagram"
             link="https://instagram.com/vanpeltventures"
+            onMouseEnter={() => handleMouseEnter('instagram')}
+            onMouseLeave={() => handleMouseLeave()}
           />
         </div>
 
@@ -121,6 +150,8 @@ export default function Home() {
           <SocialCard
             platform="youtube"
             link="https://youtube.com/@vanpeltventures"
+            onMouseEnter={() => handleMouseEnter('youtube')}
+            onMouseLeave={() => handleMouseLeave()}
           />
         </div>
 
@@ -146,6 +177,8 @@ export default function Home() {
           <SocialCard
             platform="github"
             link="https://github.com/bapierre"
+            onMouseEnter={() => handleMouseEnter('github')}
+            onMouseLeave={() => handleMouseLeave()}
           />
         </div>
 
@@ -163,6 +196,8 @@ export default function Home() {
           <SocialCard
             platform="linkedin"
             link="https://linkedin.com/in/baptistepierre"
+            onMouseEnter={() => handleMouseEnter('linkedin')}
+            onMouseLeave={() => handleMouseLeave()}
           />
         </div>
         {/* N8-P8 are part of the placeholder block above */}
@@ -190,7 +225,12 @@ export default function Home() {
         {/* Row 1 */}
         {/* X Social Card - A1 to B1 (2 wide × 1 tall) */}
         <div className="col-span-2 row-span-1">
-          <SocialCard platform="x" link="https://x.com/VanpeltVentures" />
+          <SocialCard
+            platform="x"
+            link="https://x.com/VanpeltVentures"
+            onMouseEnter={() => handleMouseEnter('x')}
+            onMouseLeave={() => handleMouseLeave()}
+          />
         </div>
 
         {/* Curify Card - C1 to F1 (4 wide × 1 tall) */}
@@ -220,24 +260,39 @@ export default function Home() {
 
         {/* YouTube Social Card - E2 to F2 (2 wide × 1 tall) */}
         <div className="col-span-2 row-span-1">
-          <SocialCard platform="youtube" link="https://youtube.com/@vanpeltventures" />
+          <SocialCard
+            platform="youtube"
+            link="https://youtube.com/@vanpeltventures"
+            onMouseEnter={() => handleMouseEnter('youtube')}
+            onMouseLeave={() => handleMouseLeave()}
+          />
         </div>
         {/* G2-H2 occupied by Mail card above */}
 
         {/* Row 3 */}
         {/* LinkedIn Social Card - A3 to B3 (2 wide × 1 tall) */}
         <div className="col-span-2 row-span-1">
-          <SocialCard platform="linkedin" link="https://linkedin.com/in/baptistepierre" />
+          <SocialCard
+            platform="linkedin"
+            link="https://linkedin.com/in/baptistepierre"
+            onMouseEnter={() => handleMouseEnter('linkedin')}
+            onMouseLeave={() => handleMouseLeave()}
+          />
         </div>
 
         {/* Hero Section - C3 to F4 (4 wide × 2 tall) */}
         <div className="col-span-4 row-span-2">
-          <DynamicHeroCard currentHover={currentHover} />
+          <DynamicHeroCard currentHover={effectiveHover} />
         </div>
 
         {/* Instagram Social Card - G3 to H3 (2 wide × 1 tall) - MOVED HERE */}
         <div className="col-span-2 row-span-1">
-          <SocialCard platform="instagram" link="https://instagram.com/vanpeltventures" />
+          <SocialCard
+            platform="instagram"
+            link="https://instagram.com/vanpeltventures"
+            onMouseEnter={() => handleMouseEnter('instagram')}
+            onMouseLeave={() => handleMouseLeave()}
+          />
         </div>
 
         {/* Row 4-5 - MRR Card A4 to B5 (2 wide × 2 tall) */}
@@ -277,79 +332,237 @@ export default function Home() {
 
         {/* GitHub Social Card - E6 to F6 (2 wide × 1 tall) */}
         <div className="col-span-2 row-span-1">
-          <SocialCard platform="github" link="https://github.com/bapierre" />
+          <SocialCard
+            platform="github"
+            link="https://github.com/bapierre"
+            onMouseEnter={() => handleMouseEnter('github')}
+            onMouseLeave={() => handleMouseLeave()}
+          />
         </div>
         {/* G6-H6 occupied by Travel card above */}
       </div>
 
       {/* Mobile Layout (< 768px) */}
-      <div className="relative z-10 md:hidden flex flex-col gap-2 p-4 pb-16" style={{ WebkitOverflowScrolling: 'touch' }}>
-        {/* DynamicHero - Main focus */}
-        <div className="h-80">
-          <DynamicHeroCard currentHover={currentHover} />
+      <div className="relative z-10 md:hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
+        {/* Sticky DynamicHero - Always on top */}
+        <div className="sticky top-0 z-20 h-80 bg-transparent p-4">
+          <DynamicHeroCard currentHover={effectiveHover} />
         </div>
 
-        {/* Mail CTA */}
-        <div className="h-40">
-          <MailCard
-            email="baptiste@refinedware.com"
-            onMouseEnter={() => handleMouseEnter('mail')}
-            onMouseLeave={() => handleMouseLeave()} />
+        {/* Sticky Info/Clear Zone */}
+        <div className="sticky top-80 z-10 h-24 mx-4 mb-4 mt-2">
+          {currentTapHover ? (
+            // Split buttons when content is selected
+            <div className="h-full flex gap-2 mx-2">
+              {/* Visit Button */}
+              <div
+                className="flex-1 backdrop-blur-sm border border-white/40 rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer bg-blue-500/20 hover:bg-blue-500/30"
+                onClick={() => {
+                  // Get the URL based on the selected card
+                  const urls = {
+                    'mail': 'mailto:baptiste@refinedware.com?subject=IT%20Project%20Inquiry&body=Hi%20Baptiste%2C%0A%0AI%20have%20an%20IT%20project%20and%20would%20like%20to%20discuss%20working%20with%20you.%0A%0A',
+                    'curify': 'https://curify.app',
+                    'refinedware': 'https://refinedware.com',
+                    'vanpeltventures': 'https://vanpeltventures.org',
+                    'travel': 'https://x.com/VanpeltVentures',
+                    'x': 'https://x.com/VanpeltVentures',
+                    'instagram': 'https://instagram.com/vanpeltventures',
+                    'youtube': 'https://youtube.com/@vanpeltventures',
+                    'linkedin': 'https://linkedin.com/in/baptistepierre',
+                    'github': 'https://github.com/bapierre'
+                  }
+                  const url = urls[currentTapHover as keyof typeof urls]
+                  if (url) {
+                    window.open(url, '_blank')
+                  }
+                }}
+              >
+                <div className="flex items-center gap-2 px-3">
+                  <div className="w-4 h-4 border border-white/60 rounded flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 bg-white/80 rounded-full"></div>
+                  </div>
+                  <p className="text-white/90 text-sm font-medium">
+                    Visit
+                  </p>
+                </div>
+              </div>
+
+              {/* Clear Button */}
+              <div
+                className="flex-1 backdrop-blur-sm border border-white/40 rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer bg-white/20 hover:bg-white/25"
+                onClick={clearSelection}
+              >
+                <div className="flex items-center gap-2 px-3">
+                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <p className="text-white/90 text-sm font-medium">
+                    Clear
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            // Default state - single instruction bar
+            <div className="h-full backdrop-blur-sm border rounded-2xl flex items-center justify-center transition-all duration-300 mx-2 bg-white/10 border-white/20 border-dashed">
+              <div className="flex items-center gap-2 px-4">
+                <div className="w-6 h-6 border-2 border-dashed border-white/40 rounded-lg flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full"></div>
+                </div>
+                <p className="text-white/70 text-sm font-medium text-center">
+                  Tap any card below to display information
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Top Social Row */}
-        <div className="flex gap-2">
-          <div className="flex-1 h-24">
-            <SocialCard platform="x" link="https://x.com/VanpeltVentures" />
+        {/* Scrollable content below sticky elements */}
+        <div className="flex flex-col gap-2 p-4 pb-16">
+
+          {/* Mail CTA */}
+          <div
+            className="h-40 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              selectCard('mail')
+            }}
+          >
+            <MailCard
+              email="baptiste@refinedware.com" />
           </div>
-          <div className="flex-1 h-24">
-            <SocialCard platform="instagram" link="https://instagram.com/vanpeltventures" />
+
+          {/* MRR */}
+          <div
+            className="h-48 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              selectCard('mrr')
+            }}
+          >
+            <MRRCard />
           </div>
-        </div>
 
-        {/* MRR */}
-        <div className="h-48">
-          <MRRCard onMouseEnter={() => handleMouseEnter('mrr')} onMouseLeave={() => handleMouseLeave()}/>
-        </div>
-
-        {/* Travel */}
-        <div className="h-72">
-          <TravelCard
-            link="https://x.com/VanpeltVentures"
-            onMouseEnter={() => handleMouseEnter('travel')}
-            onMouseLeave={() => handleMouseLeave()}/>
-        </div>
-
-        {/* Work Projects Stack */}
-        <div className="h-32">
-          <NomadMaxingCard onMouseEnter={() => handleMouseEnter('nomadmaxing')} onMouseLeave={() => handleMouseLeave()}/>
-        </div>
-
-        <div className="h-32">
-          <VanpeltVenturesCard link="https://vanpeltventures.org" onMouseEnter={() => handleMouseEnter('vanpeltventures')} onMouseLeave={() => handleMouseLeave()} />
-        </div>
-
-        <div className="h-32">
-          <RefinedwareCard link="https://refinedware.com" onMouseEnter={() => handleMouseEnter('refinedware')} onMouseLeave={() => handleMouseLeave()} />
-        </div>
-
-        <div className="h-32">
-          <CurifyCard link="https://curify.app" onMouseEnter={() => handleMouseEnter('curify')} onMouseLeave={() => handleMouseLeave()} />
-        </div>
-
-        {/* Bottom Social Row */}
-        <div className="flex gap-2">
-          <div className="flex-1 h-24">
-            <SocialCard platform="youtube" link="https://youtube.com/@vanpeltventures" />
+          {/* Travel */}
+          <div
+            className="h-72 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              selectCard('travel')
+            }}
+          >
+            <TravelCard
+              link="https://x.com/VanpeltVentures" />
           </div>
-          <div className="flex-1 h-24">
-            <SocialCard platform="github" link="https://github.com/bapierre" />
-          </div>
-        </div>
 
-        {/* Final Social */}
-        <div className="h-24">
-          <SocialCard platform="linkedin" link="https://linkedin.com/in/baptistepierre" />
+          {/* Work Projects Stack */}
+          <div
+            className="h-32 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              selectCard('nomadmaxing')
+            }}
+          >
+            <NomadMaxingCard />
+          </div>
+
+          <div
+            className="h-32 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              selectCard('vanpeltventures')
+            }}
+          >
+            <VanpeltVenturesCard link="https://vanpeltventures.org" />
+          </div>
+
+          <div
+            className="h-32 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              selectCard('refinedware')
+            }}
+          >
+            <RefinedwareCard link="https://refinedware.com" />
+          </div>
+
+          <div
+            className="h-32 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              selectCard('curify')
+            }}
+          >
+            <CurifyCard link="https://curify.app" />
+          </div>
+
+          {/* Bottom Social Row */}
+          <div className="flex gap-2">
+            <div
+              className="flex-1 h-24 cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                selectCard('youtube')
+              }}
+            >
+              <SocialCard platform="youtube" link="https://youtube.com/@vanpeltventures" />
+            </div>
+            <div
+              className="flex-1 h-24 cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                selectCard('github')
+              }}
+            >
+              <SocialCard platform="github" link="https://github.com/bapierre" />
+            </div>
+          </div>
+
+          {/* Final Social */}
+          <div
+            className="h-24 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              selectCard('linkedin')
+            }}
+          >
+            <SocialCard platform="linkedin" link="https://linkedin.com/in/baptistepierre" />
+          </div>
+
+          {/* End Social Cards - X and Instagram close to LinkedIn */}
+          <div className="flex gap-2">
+            <div
+              className="flex-1 h-24 cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                selectCard('x')
+              }}
+            >
+              <SocialCard platform="x" link="https://x.com/VanpeltVentures" />
+            </div>
+            <div
+              className="flex-1 h-24 cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                selectCard('instagram')
+              }}
+            >
+              <SocialCard platform="instagram" link="https://instagram.com/vanpeltventures" />
+            </div>
+          </div>
+
+          {/* Extra spacing to allow all cards above to reach trigger zone */}
+          <div className="h-96"></div>
         </div>
       </div>
     </div>
