@@ -121,7 +121,7 @@ export default function DynamicHeroCard({ currentHover }: DynamicHeroCardProps) 
 
   return (
     <div
-      className={`h-full bg-gradient-to-br ${content.backgroundColor} backdrop-blur-lg border border-white/50 rounded-3xl p-2 flex items-center gap-6 text-gray-900 shadow-2xl hover:shadow-white/20 hover:border-white/60 transition-all duration-1000 ease-in-out overflow-hidden relative group`}
+      className={`h-full bg-gradient-to-br ${content.backgroundColor} backdrop-blur-lg border border-white/50 rounded-3xl p-2 sm:p-4 flex items-center gap-3 sm:gap-6 text-gray-900 shadow-2xl hover:shadow-white/20 hover:border-white/60 transition-all duration-1000 ease-in-out overflow-hidden relative group`}
       style={{
         backgroundImage: content.backgroundImage,
         backgroundSize: 'cover',
@@ -138,7 +138,7 @@ export default function DynamicHeroCard({ currentHover }: DynamicHeroCardProps) 
       {/* Inner glass reflection */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-30 rounded-3xl pointer-events-none group-hover:opacity-40 transition-opacity duration-700 ease-in-out"></div>
 
-      <div className="relative z-10 flex items-center gap-6 w-full">
+      <div className="relative z-10 flex items-center gap-3 sm:gap-6 w-full">
         {/* Profile Picture - conditionally rendered */}
         {showPicture && (
           <div className={`flex-shrink-0 transition-all duration-500 ${showPicture ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
@@ -146,30 +146,30 @@ export default function DynamicHeroCard({ currentHover }: DynamicHeroCardProps) 
               <img
                 src="/assets/me.png?v=4"
                 alt="Baptiste Pierre"
-                className="w-60 h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover rounded-3xl shadow-xl ring-4 ring-white/30"
+                className="w-32 h-32 sm:w-40 sm:h-40 md:w-36 md:h-36 lg:w-60 lg:h-60 xl:w-72 xl:h-72 object-cover rounded-2xl sm:rounded-3xl shadow-xl ring-2 sm:ring-4 ring-white/30"
               />
-              <div className="absolute -bottom-3 -right-3 w-8 h-8 bg-green-500 rounded-full border-3 border-white shadow-lg"></div>
+              <div className="absolute -bottom-1.5 -right-1.5 sm:-bottom-2 sm:-right-2 md:-bottom-2.5 md:-right-2.5 lg:-bottom-3 lg:-right-3 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 bg-green-500 rounded-full border-2 sm:border-2 md:border-3 border-white shadow-lg"></div>
             </div>
           </div>
         )}
 
         {/* Dynamic Profile Info */}
         <div className={`flex-1 transition-all duration-500 ${showPicture ? 'text-left' : 'text-center'} ${currentHover ? 'text-white' : 'text-gray-900'}`}>
-          <h1 className={`text-4xl md:text-4xl lg:text-4xl font-bold mb-4 leading-tight transition-all duration-500 ${currentHover ? 'text-white' : 'bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'}`}>
+          <h1 className={`text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-3xl font-bold mb-2 sm:mb-3 md:mb-2 lg:mb-4 leading-tight transition-all duration-500 ${currentHover ? 'text-white' : 'bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'}`}>
             {content.title}
           </h1>
 
-          <p className={`text-xl md:text-xl lg:text-2xl mb-5 font-medium transition-all duration-500 ${currentHover ? 'text-white/90' : 'text-gray-700'}`}>
+          <p className={`text-sm sm:text-sm md:text-sm lg:text-base xl:text-lg mb-1 sm:mb-2 md:mb-2 lg:mb-3 font-medium transition-all duration-500 ${currentHover ? 'text-white/90' : 'text-gray-700'}`}>
             {content.subtitle}
           </p>
 
-          <div className={`flex items-center gap-4 mb-6 transition-all duration-500 ${showPicture ? 'justify-start' : 'justify-center'}`}>
-            <span className={`text-lg md:text-xl transition-all duration-500 ${currentHover ? 'text-white/80' : 'text-gray-500'}`}>{content.location}</span>
-            <span className={`w-2 h-2 rounded-full transition-all duration-500 ${currentHover ? 'bg-white/60' : 'bg-gray-400'}`}></span>
-            <span className={`text-lg md:text-xl font-medium transition-all duration-500 ${currentHover ? 'text-white/80' : 'text-gray-500'}`}>{content.status}</span>
+          <div className={`flex items-center gap-2 sm:gap-3 md:gap-2 lg:gap-4 mb-2 sm:mb-3 md:mb-2 lg:mb-4 transition-all duration-500 ${showPicture ? 'justify-start' : 'justify-center'}`}>
+            <span className={`text-xs sm:text-xs md:text-xs lg:text-sm transition-all duration-500 ${currentHover ? 'text-white/80' : 'text-gray-500'}`}>{content.location}</span>
+            <span className={`w-1.5 h-1.5 sm:w-1.5 sm:h-1.5 md:w-1.5 md:h-1.5 lg:w-2 lg:h-2 rounded-full transition-all duration-500 ${currentHover ? 'bg-white/60' : 'bg-gray-400'}`}></span>
+            <span className={`text-xs sm:text-xs md:text-xs lg:text-sm font-medium transition-all duration-500 ${currentHover ? 'text-white/80' : 'text-gray-500'}`}>{content.status}</span>
           </div>
 
-          <p className={`text-lg md:text-xl lg:text-2xl leading-relaxed transition-all duration-500 ${currentHover ? 'text-white/80' : 'text-gray-600'}`}>
+          <p className={`text-xs sm:text-xs md:text-xs lg:text-sm xl:text-base leading-relaxed transition-all duration-500 ${currentHover ? 'text-white/80' : 'text-gray-600'}`}>
             {content.description}
           </p>
         </div>

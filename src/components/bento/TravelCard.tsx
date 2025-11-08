@@ -14,41 +14,41 @@ export default function TravelCard({ link, onMouseEnter, onMouseLeave }: TravelC
       rel="noopener noreferrer"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className="h-full bg-gradient-to-br from-purple-500/75 to-indigo-500/80 backdrop-blur-lg border border-white/50 rounded-3xl p-6 flex flex-col justify-center text-white shadow-2xl hover:shadow-purple-200/30 hover:border-white/60 transition-all duration-500 relative group overflow-hidden cursor-pointer hover:scale-[1.02]"
+      className="h-full bg-gradient-to-br from-purple-500/75 to-indigo-500/80 backdrop-blur-lg border border-white/50 rounded-3xl p-4 sm:p-6 flex flex-col justify-center text-white shadow-2xl hover:shadow-purple-200/30 hover:border-white/60 transition-all duration-500 relative group overflow-hidden cursor-pointer hover:scale-[1.02]"
     >
       {/* Glass reflection overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-40 rounded-3xl pointer-events-none group-hover:opacity-60 transition-opacity duration-500"></div>
 
-      <div className="relative z-10">
-        <h3 className="font-bold text-lg mb-4 text-center">✈️ Catch me here</h3>
+      <div className="relative z-10 h-full flex flex-col">
+        <h3 className="font-bold text-base sm:text-lg mb-2 sm:mb-4 text-center">✈️ Catch me here</h3>
 
-        <div className="space-y-2 text-sm mb-4">
-          <div className="flex justify-between">
+        <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm mb-3 sm:mb-4 flex-1 overflow-y-auto">
+          <div className="flex justify-between items-center">
             <span className="font-medium">Brussels</span>
-            <span className="opacity-90">1st Nov → 5th Jun</span>
+            <span className="opacity-90 text-right">1st Nov → 5th Jun</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <span className="font-medium">Ho Chi Minh</span>
-            <span className="opacity-90">6th Jun → 20th Jun</span>
+            <span className="opacity-90 text-right">6th Jun → 20th Jun</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <span className="font-medium">Da Nang</span>
-            <span className="opacity-90">21st Jun → 21st Aug</span>
+            <span className="opacity-90 text-right">21st Jun → 21st Aug</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <span className="font-medium">Ha Noi</span>
-            <span className="opacity-90">22nd Aug → 4th Sep</span>
+            <span className="opacity-90 text-right">22nd Aug → 4th Sep</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <span className="font-medium">Bangkok</span>
-            <span className="opacity-90">5th Sep → 4th Oct</span>
+            <span className="opacity-90 text-right">5th Sep → 4th Oct</span>
           </div>
-          <div className="text-center italic opacity-80 pt-2">
+          <div className="text-center italic opacity-80 pt-1 sm:pt-2 text-xs">
             More destinations to come
           </div>
         </div>
 
-        <div className="text-center text-sm font-medium bg-white/20 rounded-lg p-2">
+        <div className="text-center text-xs sm:text-sm font-medium bg-white/20 rounded-lg p-1.5 sm:p-2 mt-auto">
           DM me on X to schedule a meetup
         </div>
       </div>

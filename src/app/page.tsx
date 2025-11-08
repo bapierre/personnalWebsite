@@ -15,9 +15,9 @@ export default function Home() {
   const { currentHover, handleMouseEnter, handleMouseLeave } = useHoverState()
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative lg:overflow-hidden">
       {/* Optimized Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900">
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900">
         <div className="absolute inset-0 bg-gradient-to-tr from-silver/10 via-transparent to-zinc-600/20"></div>
         <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-silver/5 to-zinc-700/25"></div>
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-radial from-silver/15 via-zinc-600/10 to-transparent rounded-full blur-3xl animate-pulse opacity-70"></div>
@@ -25,8 +25,9 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-radial from-silver/12 via-zinc-400/6 to-transparent rounded-full blur-3xl animate-pulse delay-500 opacity-50"></div>
       </div>
 
+      {/* Desktop Layout (1024px+) */}
       <div
-        className="relative z-10 h-screen grid gap-2 p-4"
+        className="relative z-10 h-screen hidden lg:grid gap-2 p-4"
         style={{
           gridTemplateColumns: 'repeat(16, 1fr)',
           gridTemplateRows: 'repeat(9, 1fr)'
@@ -44,7 +45,7 @@ export default function Home() {
 
         {/* C1-F2 Merged: Nomad Maxing (4x2) */}
         <div className="col-span-4 row-span-2">
-          <NomadMaxingCard 
+          <NomadMaxingCard
             onMouseEnter={() => handleMouseEnter('nomadmaxing')}
             onMouseLeave={() => handleMouseLeave()}/>
         </div>
@@ -67,7 +68,7 @@ export default function Home() {
 
         {/* N1-P3 Merged: Contact for Projects (3x3) */}
         <div className="col-span-3 row-span-3">
-          <MailCard 
+          <MailCard
             email="baptiste@refinedware.com"
             onMouseEnter={() => handleMouseEnter('mail')}
             onMouseLeave={() => handleMouseLeave()} />
@@ -83,7 +84,7 @@ export default function Home() {
 
         {/* A3-C5 Merged: MRR Tracker (3x3) */}
         <div className="col-span-3 row-span-3">
-          <MRRCard 
+          <MRRCard
             onMouseEnter={() => handleMouseEnter('mrr')}
             onMouseLeave={() => handleMouseLeave()}/>
         </div>
@@ -102,8 +103,8 @@ export default function Home() {
 
         {/* N4-P9 Merged: Travel Itinerary (3x6) */}
         <div className="col-span-3 row-span-6">
-          <TravelCard 
-            link="https://x.com/VanpeltVentures" 
+          <TravelCard
+            link="https://x.com/VanpeltVentures"
             onMouseEnter={() => handleMouseEnter('travel')}
             onMouseLeave={() => handleMouseLeave()}/>
         </div>
@@ -173,6 +174,183 @@ export default function Home() {
         {/* L9-M9 are part of the LinkedIn block above */}
         {/* N9-P9 are part of the placeholder block above */}
 
+      </div>
+
+      {/* Tablet Layout (768px - 1023px) - Grid System for Positioning */}
+      <div
+        className="relative z-10 min-h-screen hidden md:grid lg:hidden gap-2 p-4 pb-8"
+        style={{
+          gridTemplateColumns: 'repeat(8, 1fr)',
+          gridTemplateRows: 'repeat(6, 140px)'
+        }}
+      >
+        {/* Grid squares - you can specify coordinates for each component */}
+
+        {/* PLACEHOLDER SQUARES - Remove these and add components with coordinates */}
+        {/* Row 1 */}
+        {/* X Social Card - A1 to B1 (2 wide × 1 tall) */}
+        <div className="col-span-2 row-span-1">
+          <SocialCard platform="x" link="https://x.com/VanpeltVentures" />
+        </div>
+
+        {/* Curify Card - C1 to F1 (4 wide × 1 tall) */}
+        <div className="col-span-4 row-span-1">
+          <CurifyCard
+            link="https://curify.app"
+            onMouseEnter={() => handleMouseEnter('curify')}
+            onMouseLeave={() => handleMouseLeave()}
+          />
+        </div>
+
+        {/* Mail Card - G1 to H2 (2 wide × 2 tall) - RESTORED */}
+        <div className="col-span-2 row-span-2">
+          <MailCard
+            email="baptiste@refinedware.com"
+            onMouseEnter={() => handleMouseEnter('mail')}
+            onMouseLeave={() => handleMouseLeave()} />
+        </div>
+
+        {/* Row 2 - Mail card continues, so only A2-F2 are available */}
+        {/* NomadMaxing Card - A2 to D2 (4 wide × 1 tall) */}
+        <div className="col-span-4 row-span-1">
+          <NomadMaxingCard
+            onMouseEnter={() => handleMouseEnter('nomadmaxing')}
+            onMouseLeave={() => handleMouseLeave()}/>
+        </div>
+
+        {/* YouTube Social Card - E2 to F2 (2 wide × 1 tall) */}
+        <div className="col-span-2 row-span-1">
+          <SocialCard platform="youtube" link="https://youtube.com/@vanpeltventures" />
+        </div>
+        {/* G2-H2 occupied by Mail card above */}
+
+        {/* Row 3 */}
+        {/* LinkedIn Social Card - A3 to B3 (2 wide × 1 tall) */}
+        <div className="col-span-2 row-span-1">
+          <SocialCard platform="linkedin" link="https://linkedin.com/in/baptistepierre" />
+        </div>
+
+        {/* Hero Section - C3 to F4 (4 wide × 2 tall) */}
+        <div className="col-span-4 row-span-2">
+          <DynamicHeroCard currentHover={currentHover} />
+        </div>
+
+        {/* Instagram Social Card - G3 to H3 (2 wide × 1 tall) - MOVED HERE */}
+        <div className="col-span-2 row-span-1">
+          <SocialCard platform="instagram" link="https://instagram.com/vanpeltventures" />
+        </div>
+
+        {/* Row 4-5 - MRR Card A4 to B5 (2 wide × 2 tall) */}
+        <div className="col-span-2 row-span-2">
+          <MRRCard onMouseEnter={() => handleMouseEnter('mrr')} onMouseLeave={() => handleMouseLeave()}/>
+        </div>
+        {/* C4-F4 occupied by Hero section above */}
+
+        {/* Travel Card - G4 to H6 (2 wide × 3 tall) - REDUCED */}
+        <div className="col-span-2 row-span-3">
+          <TravelCard
+            link="https://x.com/VanpeltVentures"
+            onMouseEnter={() => handleMouseEnter('travel')}
+            onMouseLeave={() => handleMouseLeave()}/>
+        </div>
+
+        {/* Row 5 - MRR card continues, Travel card continues */}
+        {/* A5-B5 occupied by MRR card above */}
+
+        {/* Refinedware Card - C5 to F5 (4 wide × 1 tall) */}
+        <div className="col-span-4 row-span-1">
+          <RefinedwareCard
+            link="https://refinedware.com"
+            onMouseEnter={() => handleMouseEnter('refinedware')}
+            onMouseLeave={() => handleMouseLeave()} />
+        </div>
+        {/* G5-H5 occupied by Travel card above */}
+
+        {/* Row 6 - Travel card continues, so only A6-F6 available */}
+        {/* VanpeltVentures Card - A6 to D6 (4 wide × 1 tall) */}
+        <div className="col-span-4 row-span-1">
+          <VanpeltVenturesCard
+            link="https://vanpeltventures.org"
+            onMouseEnter={() => handleMouseEnter('vanpeltventures')}
+            onMouseLeave={() => handleMouseLeave()} />
+        </div>
+
+        {/* GitHub Social Card - E6 to F6 (2 wide × 1 tall) */}
+        <div className="col-span-2 row-span-1">
+          <SocialCard platform="github" link="https://github.com/bapierre" />
+        </div>
+        {/* G6-H6 occupied by Travel card above */}
+      </div>
+
+      {/* Mobile Layout (< 768px) */}
+      <div className="relative z-10 md:hidden flex flex-col gap-2 p-4 pb-16" style={{ WebkitOverflowScrolling: 'touch' }}>
+        {/* DynamicHero - Main focus */}
+        <div className="h-80">
+          <DynamicHeroCard currentHover={currentHover} />
+        </div>
+
+        {/* Mail CTA */}
+        <div className="h-40">
+          <MailCard
+            email="baptiste@refinedware.com"
+            onMouseEnter={() => handleMouseEnter('mail')}
+            onMouseLeave={() => handleMouseLeave()} />
+        </div>
+
+        {/* Top Social Row */}
+        <div className="flex gap-2">
+          <div className="flex-1 h-24">
+            <SocialCard platform="x" link="https://x.com/VanpeltVentures" />
+          </div>
+          <div className="flex-1 h-24">
+            <SocialCard platform="instagram" link="https://instagram.com/vanpeltventures" />
+          </div>
+        </div>
+
+        {/* MRR */}
+        <div className="h-48">
+          <MRRCard onMouseEnter={() => handleMouseEnter('mrr')} onMouseLeave={() => handleMouseLeave()}/>
+        </div>
+
+        {/* Travel */}
+        <div className="h-72">
+          <TravelCard
+            link="https://x.com/VanpeltVentures"
+            onMouseEnter={() => handleMouseEnter('travel')}
+            onMouseLeave={() => handleMouseLeave()}/>
+        </div>
+
+        {/* Work Projects Stack */}
+        <div className="h-32">
+          <NomadMaxingCard onMouseEnter={() => handleMouseEnter('nomadmaxing')} onMouseLeave={() => handleMouseLeave()}/>
+        </div>
+
+        <div className="h-32">
+          <VanpeltVenturesCard link="https://vanpeltventures.org" onMouseEnter={() => handleMouseEnter('vanpeltventures')} onMouseLeave={() => handleMouseLeave()} />
+        </div>
+
+        <div className="h-32">
+          <RefinedwareCard link="https://refinedware.com" onMouseEnter={() => handleMouseEnter('refinedware')} onMouseLeave={() => handleMouseLeave()} />
+        </div>
+
+        <div className="h-32">
+          <CurifyCard link="https://curify.app" onMouseEnter={() => handleMouseEnter('curify')} onMouseLeave={() => handleMouseLeave()} />
+        </div>
+
+        {/* Bottom Social Row */}
+        <div className="flex gap-2">
+          <div className="flex-1 h-24">
+            <SocialCard platform="youtube" link="https://youtube.com/@vanpeltventures" />
+          </div>
+          <div className="flex-1 h-24">
+            <SocialCard platform="github" link="https://github.com/bapierre" />
+          </div>
+        </div>
+
+        {/* Final Social */}
+        <div className="h-24">
+          <SocialCard platform="linkedin" link="https://linkedin.com/in/baptistepierre" />
+        </div>
       </div>
     </div>
   )
