@@ -353,53 +353,62 @@ export default function Home() {
         <div className="sticky top-80 z-10 h-24 mx-4 mb-4 mt-2">
           {currentTapHover ? (
             // Split buttons when content is selected
-            <div className="h-full flex gap-2 mx-2">
-              {/* Visit Button */}
-              <div
-                className="flex-1 backdrop-blur-sm border border-white/40 rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer bg-blue-500/20 hover:bg-blue-500/30"
-                onClick={() => {
-                  // Get the URL based on the selected card
-                  const urls = {
-                    'mail': 'mailto:baptiste@refinedware.com?subject=IT%20Project%20Inquiry&body=Hi%20Baptiste%2C%0A%0AI%20have%20an%20IT%20project%20and%20would%20like%20to%20discuss%20working%20with%20you.%0A%0A',
-                    'curify': 'https://curify.app',
-                    'refinedware': 'https://refinedware.com',
-                    'vanpeltventures': 'https://vanpeltventures.org',
-                    'travel': 'https://x.com/VanpeltVentures',
-                    'x': 'https://x.com/VanpeltVentures',
-                    'instagram': 'https://instagram.com/vanpeltventures',
-                    'youtube': 'https://youtube.com/@vanpeltventures',
-                    'linkedin': 'https://linkedin.com/in/baptistepierre',
-                    'github': 'https://github.com/bapierre'
-                  }
-                  const url = urls[currentTapHover as keyof typeof urls]
-                  if (url) {
-                    window.open(url, '_blank')
-                  }
-                }}
-              >
-                <div className="flex items-center gap-2 px-3">
-                  <div className="w-4 h-4 border border-white/60 rounded flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 bg-white/80 rounded-full"></div>
-                  </div>
-                  <p className="text-white/90 text-sm font-medium">
-                    Visit
-                  </p>
-                </div>
-              </div>
+            (() => {
+              // Define which cards have visitable URLs
+              const urls = {
+                'mail': 'mailto:baptiste@refinedware.com?subject=IT%20Project%20Inquiry&body=Hi%20Baptiste%2C%0A%0AI%20have%20an%20IT%20project%20and%20would%20like%20to%20discuss%20working%20with%20you.%0A%0A',
+                'curify': 'https://curify.app',
+                'refinedware': 'https://refinedware.com',
+                'vanpeltventures': 'https://vanpeltventures.org',
+                'travel': 'https://x.com/VanpeltVentures',
+                'x': 'https://x.com/VanpeltVentures',
+                'instagram': 'https://instagram.com/vanpeltventures',
+                'youtube': 'https://youtube.com/@vanpeltventures',
+                'linkedin': 'https://linkedin.com/in/baptistepierre',
+                'github': 'https://github.com/bapierre'
+              }
 
-              {/* Clear Button */}
-              <div
-                className="flex-1 backdrop-blur-sm border border-white/40 rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer bg-white/20 hover:bg-white/25"
-                onClick={clearSelection}
-              >
-                <div className="flex items-center gap-2 px-3">
-                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                  <p className="text-white/90 text-sm font-medium">
-                    Clear
-                  </p>
+              const currentUrl = urls[currentTapHover as keyof typeof urls]
+              const hasVisitableUrl = !!currentUrl
+
+              return (
+                <div className="h-full flex gap-2 mx-2">
+                  {/* Visit Button - only show if there's a URL to visit */}
+                  {hasVisitableUrl && (
+                    <div
+                      className={`${hasVisitableUrl && !currentUrl ? 'flex-1' : hasVisitableUrl ? 'flex-1' : 'hidden'} backdrop-blur-md bg-blue-600/95 border-2 border-blue-200 rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:bg-blue-700/95 hover:border-blue-100 shadow-xl shadow-blue-600/50`}
+                      onClick={() => {
+                        if (currentUrl) {
+                          window.open(currentUrl, '_blank')
+                        }
+                      }}
+                    >
+                      <div className="flex items-center gap-2 px-3">
+                        <div className="w-4 h-4 border-2 border-white/90 rounded flex items-center justify-center bg-white/20">
+                          <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                        </div>
+                        <p className="text-white text-sm font-bold drop-shadow">
+                          Visit
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Clear Button - takes full width if no visit button */}
+                  <div
+                    className={`${hasVisitableUrl ? 'flex-1' : 'w-full'} backdrop-blur-md bg-red-600/95 border-2 border-red-200 rounded-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:bg-red-700/95 hover:border-red-100 shadow-xl shadow-red-600/50`}
+                    onClick={clearSelection}
+                  >
+                    <div className="flex items-center gap-2 px-3">
+                      <div className="w-3 h-3 bg-white/90 rounded-full drop-shadow"></div>
+                      <p className="text-white text-sm font-bold drop-shadow">
+                        Clear
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              )
+            })()
           ) : (
             // Default state - single instruction bar
             <div className="h-full backdrop-blur-sm border rounded-2xl flex items-center justify-center transition-all duration-300 mx-2 bg-white/10 border-white/20 border-dashed">

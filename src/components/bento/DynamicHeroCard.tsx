@@ -199,7 +199,52 @@ export default function DynamicHeroCard({ currentHover }: DynamicHeroCardProps) 
       {/* Inner glass reflection */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-30 rounded-3xl pointer-events-none group-hover:opacity-40 transition-opacity duration-700 ease-in-out"></div>
 
-      <div className="relative z-10 flex items-center gap-3 sm:gap-6 w-full">
+      {/* Mobile Layout: Image top-left, title/subtitle beside it, paragraph below */}
+      <div className="relative z-10 w-full md:hidden">
+        {/* Top section: Image + Title/Subtitle */}
+        <div className={`flex items-start gap-3 mb-3 transition-all duration-500 ${showPicture ? '' : 'justify-center'}`}>
+          {showPicture && (
+            <div className="flex-shrink-0 transition-all duration-500">
+              <div className="relative">
+                <img
+                  src="/assets/me.png?v=4"
+                  alt="Baptiste Pierre"
+                  className="w-16 h-16 object-cover rounded-xl shadow-xl ring-2 ring-white/30"
+                  style={{ objectPosition: 'center 20%' }}
+                />
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white shadow-lg"></div>
+              </div>
+            </div>
+          )}
+
+          {/* Title and subtitle container */}
+          <div className={`flex-1 transition-all duration-500 ${showPicture ? 'text-left' : 'text-center'} ${currentHover ? 'text-white' : 'text-gray-900'}`}>
+            <h1 className={`text-lg font-bold mb-1 leading-tight transition-all duration-500 ${currentHover ? 'text-white' : 'bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'}`}>
+              {content.title}
+            </h1>
+
+            <p className={`text-sm mb-2 font-medium transition-all duration-500 ${currentHover ? 'text-white/90' : 'text-gray-700'}`}>
+              {content.subtitle}
+            </p>
+
+            <div className={`flex items-center gap-2 transition-all duration-500 ${showPicture ? 'justify-start' : 'justify-center'}`}>
+              <span className={`text-xs transition-all duration-500 ${currentHover ? 'text-white/80' : 'text-gray-500'}`}>{content.location}</span>
+              <span className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${currentHover ? 'bg-white/60' : 'bg-gray-400'}`}></span>
+              <span className={`text-xs font-medium transition-all duration-500 ${currentHover ? 'text-white/80' : 'text-gray-500'}`}>{content.status}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom section: Full-width description */}
+        <div className={`transition-all duration-500 ${showPicture ? 'text-left' : 'text-center'} ${currentHover ? 'text-white' : 'text-gray-900'}`}>
+          <p className={`text-xs leading-relaxed transition-all duration-500 ${currentHover ? 'text-white/80' : 'text-gray-600'}`}>
+            {content.description}
+          </p>
+        </div>
+      </div>
+
+      {/* Desktop/Tablet Layout: Side-by-side */}
+      <div className="relative z-10 hidden md:flex items-center gap-3 sm:gap-6 w-full">
         {/* Profile Picture - conditionally rendered */}
         {showPicture && (
           <div className={`flex-shrink-0 transition-all duration-500 ${showPicture ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
@@ -207,9 +252,9 @@ export default function DynamicHeroCard({ currentHover }: DynamicHeroCardProps) 
               <img
                 src="/assets/me.png?v=4"
                 alt="Baptiste Pierre"
-                className="w-32 h-32 sm:w-40 sm:h-40 md:w-36 md:h-36 lg:w-60 lg:h-60 xl:w-72 xl:h-72 object-cover rounded-2xl sm:rounded-3xl shadow-xl ring-2 sm:ring-4 ring-white/30"
+                className="w-36 h-36 lg:w-60 lg:h-60 xl:w-72 xl:h-72 object-cover rounded-2xl sm:rounded-3xl shadow-xl ring-2 sm:ring-4 ring-white/30"
               />
-              <div className="absolute -bottom-1.5 -right-1.5 sm:-bottom-2 sm:-right-2 md:-bottom-2.5 md:-right-2.5 lg:-bottom-3 lg:-right-3 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 bg-green-500 rounded-full border-2 sm:border-2 md:border-3 border-white shadow-lg"></div>
+              <div className="absolute -bottom-2.5 -right-2.5 lg:-bottom-3 lg:-right-3 w-6 h-6 lg:w-8 lg:h-8 bg-green-500 rounded-full border-2 md:border-3 border-white shadow-lg"></div>
             </div>
           </div>
         )}
