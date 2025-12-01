@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 
 interface AccordionItemProps {
   title: string;
-  isOpen: boolean;
-  onToggle: () => void;
+  isOpen?: boolean;
+  onToggle?: () => void;
   children: React.ReactNode;
 }
 
-const AccordionItem: React.FC<AccordionItemProps> = ({ title, isOpen, onToggle, children }) => (
+const AccordionItem: React.FC<AccordionItemProps> = ({ title, isOpen = false, onToggle = () => {}, children }) => (
   <div className="border border-gray-700 rounded-lg mb-2">
     <button
       onClick={onToggle}
