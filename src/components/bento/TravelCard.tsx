@@ -25,11 +25,11 @@ export default function TravelCard({ link, onMouseEnter, onMouseLeave }: TravelC
         <div className="space-y-1 sm:space-y-1 md:space-y-0.5 lg:space-y-2 text-sm sm:text-xs md:text-xs lg:text-sm mb-3 sm:mb-3 md:mb-2 lg:mb-4 flex-1 overflow-y-auto py-2 sm:py-3 md:py-2 lg:py-4">
           <div className="flex justify-between items-center">
             <span className="font-medium">Brussels</span>
-            <span className="opacity-90 text-right">1st Nov → 5th Jun</span>
+            <span className="opacity-90 text-right">1st Nov → 6th Jun</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="font-medium">Ho Chi Minh</span>
-            <span className="opacity-90 text-right">6th Jun → 20th Jun</span>
+            <span className="font-medium">Ho Chi Minh City</span>
+            <span className="opacity-90 text-right">7th Jun → 21th Jun</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="font-medium">Da Nang</span>
@@ -40,8 +40,12 @@ export default function TravelCard({ link, onMouseEnter, onMouseLeave }: TravelC
             <span className="opacity-90 text-right">22nd Aug → 4th Sep</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="font-medium">Bangkok</span>
+            <span className="font-medium">Chiang Mai</span>
             <span className="opacity-90 text-right">5th Sep → 4th Oct</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="font-medium">Bangkok</span>
+            <span className="opacity-90 text-right">5th Oct → 4th Nov</span>
           </div>
           <div className="text-center italic opacity-80 pt-1 sm:pt-1 md:pt-0.5 lg:pt-2 text-sm sm:text-xs md:text-xs lg:text-xs">
             More destinations to come

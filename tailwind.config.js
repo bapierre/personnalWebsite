@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'bulgatti': ['Bulgatti', 'sans-serif'],
         'titles': ['titles', 'sans-serif'],
+        'bulgatti': ['Bulgatti', 'sans-serif'],
       },
       colors: {
         'hover-cyan': '#87bdd8',
