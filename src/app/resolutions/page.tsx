@@ -66,7 +66,12 @@ const ResolutionsPage = () => {
     if (!node) return;
 
     const exportToPng = () => {
-      toPng(node, { cacheBust: true, pixelRatio: 2 })
+      toPng(node, { 
+          cacheBust: true, 
+          pixelRatio: 2,
+          width: node.clientWidth,
+          height: node.clientHeight,
+        })
         .then((dataUrl) => {
           const link = document.createElement('a');
           link.download = 'my-resolutions.png';
