@@ -26,7 +26,7 @@ interface StyleControlsProps {
   onFrameBorderColorChange: (color: string) => void;
   selectedTheme: Theme;
   onThemeChange: (theme: Theme) => void;
-  backgroundType: 'solid' | 'gradient';
+  backgroundType: 'solid' | 'gradient' | 'image';
   onUserImageUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
