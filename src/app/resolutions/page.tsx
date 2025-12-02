@@ -12,7 +12,6 @@ import {
   PanelResizeHandle,
 } from "react-resizable-panels";
 import Link from 'next/link';
-
 import { Preset } from '@/components/resolutions/presets';
 
 const ResolutionsPage = () => {
@@ -61,41 +60,111 @@ const ResolutionsPage = () => {
     }
   };
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     const node = document.getElementById('snapshot-card-container');
     if (!node) return;
 
-    const exportToPng = () => {
-      toPng(node, { 
-          cacheBust: true, 
-          pixelRatio: 2,
-          width: node.clientWidth,
-          height: node.clientHeight,
-        })
-        .then((dataUrl) => {
-          const link = document.createElement('a');
-          link.download = 'my-resolutions.png';
-          link.href = dataUrl;
-          link.click();
-        })
-        .catch((err) => {
-          console.error('Oops, something went wrong!', err);
-        });
-    };
+    try {
+      // Helper to load image as data URL
+      const loadImageAsDataURL = (src: string): Promise<string> => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
 
-    if (backgroundImage) {
-      const img = new Image();
-      img.onload = exportToPng;
-      img.onerror = (err) => {
-        console.error('Failed to load background image for export', err);
-        exportToPng(); // Try to export anyway
+          // Only set crossOrigin for external images
+          const absoluteSrc = src.startsWith('http') ? src : window.location.origin + src;
+          if (!absoluteSrc.startsWith(window.location.origin)) {
+            img.crossOrigin = 'anonymous';
+          }
+
+          img.onload = () => {
+            try {
+              const canvas = document.createElement('canvas');
+              canvas.width = img.naturalWidth || img.width;
+              canvas.height = img.naturalHeight || img.height;
+              const ctx = canvas.getContext('2d');
+              if (ctx) {
+                ctx.drawImage(img, 0, 0);
+                resolve(canvas.toDataURL('image/png'));
+              } else {
+                reject(new Error('Could not get canvas context'));
+              }
+            } catch (error) {
+              console.error('Canvas error:', error);
+              reject(error);
+            }
+          };
+          img.onerror = (e) => {
+            console.error(`Failed to load image: ${absoluteSrc}`, e);
+            reject(new Error(`Failed to load image: ${absoluteSrc}`));
+          };
+
+          img.src = absoluteSrc;
+        });
       };
-      img.src = backgroundImage;
-    } else {
-      exportToPng();
+
+      // Get all images in the container
+      const images = Array.from(node.querySelectorAll('img')) as HTMLImageElement[];
+
+      // Store original src values
+      const originalSrcs = images.map(img => img.src);
+
+      // Convert all images to data URLs and ensure they're loaded
+      console.log(`Found ${images.length} images to convert`);
+      for (let i = 0; i < images.length; i++) {
+        const img = images[i];
+        console.log(`Processing image ${i}: ${img.src.substring(0, 50)}...`);
+        if (!img.src.startsWith('data:')) {
+          try {
+            const dataURL = await loadImageAsDataURL(img.src);
+            console.log(`Converted image ${i} to data URL (length: ${dataURL.length})`);
+            img.src = dataURL;
+          } catch (err) {
+            console.error(`Failed to convert image ${i}:`, err);
+          }
+        } else {
+          console.log(`Image ${i} already a data URL (length: ${img.src.length})`);
+        }
+
+        // Ensure image is fully loaded
+        if (!img.complete) {
+          console.log(`Waiting for image ${i} to load...`);
+          await new Promise((resolve) => {
+            img.onload = resolve;
+            img.onerror = resolve;
+          });
+        }
+        console.log(`Image ${i} complete:`, img.complete, `natural size:`, img.naturalWidth, 'x', img.naturalHeight);
+      }
+
+      // Wait a moment for DOM to settle
+      await new Promise(resolve => setTimeout(resolve, 200));
+
+      // Capture with html-to-image
+      console.log('Capturing with html-to-image...');
+      const dataUrl = await toPng(node, {
+        cacheBust: false,
+        pixelRatio: 3,
+        skipFonts: false,
+      });
+      console.log(`Captured! Data URL length: ${dataUrl.length}`);
+
+      // Restore original images
+      images.forEach((img, i) => {
+        img.src = originalSrcs[i];
+      });
+
+      // Download
+      const link = document.createElement('a');
+      link.download = 'my-resolutions-2026.png';
+      link.href = dataUrl;
+      link.click();
+
+    } catch (err) {
+      console.error('Export failed:', err);
+      alert('Failed to export image. Please try again.');
     }
   };
-  
+
   const handleUserImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -107,7 +176,7 @@ const ResolutionsPage = () => {
     }
   };
 
-  const backgroundImage = backgroundImages?.[goals.length]
+  const backgroundImage = backgroundImages?.[goals.length];
 
   return (
     <div className="min-h-screen bg-gray-900 text-white relative">
@@ -176,4 +245,3 @@ const ResolutionsPage = () => {
 };
 
 export default ResolutionsPage;
-
