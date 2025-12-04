@@ -11,9 +11,8 @@ interface SnapshotCardProps {
   frameColor: string;
   frameBorderColor: string;
   theme: Theme;
-  backgroundType: 'solid' | 'gradient' | 'image';
-  backgroundImage?: string;
-  userImage?: string | null;
+  backgroundType: 'solid' | 'gradient';
+  xUsername: string;
 }
 
 const SnapshotCard: React.FC<SnapshotCardProps> = ({
@@ -25,8 +24,7 @@ const SnapshotCard: React.FC<SnapshotCardProps> = ({
   frameBorderColor,
   theme,
   backgroundType,
-  backgroundImage,
-  userImage,
+  xUsername,
 }) => {
   const layout = layouts[goals.length]?.[0];
 
@@ -39,13 +37,7 @@ const SnapshotCard: React.FC<SnapshotCardProps> = ({
   }
 
   const getBackgroundStyle = () => {
-    if (backgroundType === 'image' && backgroundImage) {
-      return {
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      };
-    } else if (backgroundType === 'gradient') {
+    if (backgroundType === 'gradient') {
       return {
         backgroundImage: `linear-gradient(to right, ${theme.gradientFrom}, ${theme.gradientTo})`,
       };
@@ -54,6 +46,14 @@ const SnapshotCard: React.FC<SnapshotCardProps> = ({
         backgroundColor: bgColor,
       };
     }
+  };
+
+  const getFontSize = (text: string) => {
+    const length = text.length;
+    if (length > 50) return 'text-sm md:text-base lg:text-lg';
+    if (length > 35) return 'text-base md:text-lg lg:text-xl';
+    if (length > 20) return 'text-lg md:text-xl lg:text-2xl';
+    return 'text-lg md:text-xl lg:text-2xl';
   };
 
   return (
@@ -86,7 +86,7 @@ const SnapshotCard: React.FC<SnapshotCardProps> = ({
             }}
             className="rounded-2xl border-2 p-6 flex items-center justify-center text-center overflow-hidden"
           >
-            <p className="text-lg md:text-xl lg:text-2xl font-semibold leading-tight">
+            <p className={`${getFontSize(goal)} font-semibold leading-tight`}>
               {goal}
             </p>
           </div>
@@ -111,24 +111,25 @@ const SnapshotCard: React.FC<SnapshotCardProps> = ({
           style={{
             gridArea: 'picture',
             borderColor: frameBorderColor,
-            backgroundColor: userImage ? 'transparent' : frameColor,
+            backgroundColor: frameColor,
             color: goalTextColor,
           }}
-          className="relative overflow-hidden rounded-2xl border-2"
+          className="rounded-2xl border-2 p-4 flex items-center justify-center text-center"
         >
-          {userImage ? (
-            <img
-              src={userImage}
-              alt="Profile"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+          {xUsername && xUsername !== '@' ? (
+            <p
+              className="text-lg md:text-xl lg:text-2xl font-semibold leading-tight w-full"
+              style={{
+                overflowWrap: 'break-word',
+                wordBreak: 'break-word',
+              }}
+            >
+              {xUsername}
+            </p>
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center text-center p-4">
-              <div>
-                <p className="text-sm md:text-base opacity-70">Upload your photo</p>
-                <p className="text-xs md:text-sm opacity-50 mt-1">in the left panel</p>
-              </div>
-            </div>
+            <p className="text-base md:text-lg lg:text-xl font-semibold leading-tight opacity-60">
+              Type your X handle
+            </p>
           )}
         </div>
       </div>

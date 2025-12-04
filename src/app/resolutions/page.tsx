@@ -29,9 +29,8 @@ const ResolutionsPage = () => {
   const [frameColor, setFrameColor] = useState('rgba(255, 255, 255, 0.05)');
   const [frameBorderColor, setFrameBorderColor] = useState('rgba(255, 255, 255, 0.1)');
   const [selectedTheme, setSelectedTheme] = useState<Theme>(themes[0]);
-  const [backgroundType, setBackgroundType] = useState<'solid' | 'gradient' | 'image'>('gradient');
-  const [backgroundImages, setBackgroundImages] = useState<{ [key: number]: string } | undefined>();
-  const [userImage, setUserImage] = useState<string | null>(null);
+  const [backgroundType, setBackgroundType] = useState<'solid' | 'gradient'>('gradient');
+  const [xUsername, setXUsername] = useState('@');
 
   const handleAddGoal = (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +44,29 @@ const ResolutionsPage = () => {
     setGoals(goals.filter((_, i) => i !== index));
   };
 
+  const handleMoveGoalUp = (index: number) => {
+    if (index === 0) return;
+    const newGoals = [...goals];
+    [newGoals[index - 1], newGoals[index]] = [newGoals[index], newGoals[index - 1]];
+    setGoals(newGoals);
+  };
+
+  const handleMoveGoalDown = (index: number) => {
+    if (index === goals.length - 1) return;
+    const newGoals = [...goals];
+    [newGoals[index], newGoals[index + 1]] = [newGoals[index + 1], newGoals[index]];
+    setGoals(newGoals);
+  };
+
+  const handleXUsernameChange = (value: string) => {
+    // Ensure it always starts with @
+    if (!value.startsWith('@')) {
+      setXUsername('@' + value);
+    } else {
+      setXUsername(value);
+    }
+  };
+
   const handlePresetSelect = (preset: Preset) => {
     setSelectedFont(preset.font);
     setGoalTextColor(preset.goalTextColor);
@@ -53,11 +75,6 @@ const ResolutionsPage = () => {
     setFrameBorderColor(preset.frameBorderColor);
     setSelectedTheme(preset.theme);
     setBackgroundType(preset.backgroundType);
-    if (preset.backgroundType === 'image' && preset.backgroundImages) {
-      setBackgroundImages(preset.backgroundImages);
-    } else {
-      setBackgroundImages(undefined);
-    }
   };
 
   const handleDownload = async () => {
@@ -65,118 +82,21 @@ const ResolutionsPage = () => {
     if (!node) return;
 
     try {
-      // Helper to load image as data URL
-      const loadImageAsDataURL = (src: string): Promise<string> => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-
-          // Only set crossOrigin for external images
-          const absoluteSrc = src.startsWith('http') ? src : window.location.origin + src;
-          if (!absoluteSrc.startsWith(window.location.origin)) {
-            img.crossOrigin = 'anonymous';
-          }
-
-          img.onload = () => {
-            try {
-              const canvas = document.createElement('canvas');
-              canvas.width = img.naturalWidth || img.width;
-              canvas.height = img.naturalHeight || img.height;
-              const ctx = canvas.getContext('2d');
-              if (ctx) {
-                ctx.drawImage(img, 0, 0);
-                resolve(canvas.toDataURL('image/png'));
-              } else {
-                reject(new Error('Could not get canvas context'));
-              }
-            } catch (error) {
-              console.error('Canvas error:', error);
-              reject(error);
-            }
-          };
-          img.onerror = (e) => {
-            console.error(`Failed to load image: ${absoluteSrc}`, e);
-            reject(new Error(`Failed to load image: ${absoluteSrc}`));
-          };
-
-          img.src = absoluteSrc;
-        });
-      };
-
-      // Get all images in the container
-      const images = Array.from(node.querySelectorAll('img')) as HTMLImageElement[];
-
-      // Store original src values
-      const originalSrcs = images.map(img => img.src);
-
-      // Convert all images to data URLs and ensure they're loaded
-      console.log(`Found ${images.length} images to convert`);
-      for (let i = 0; i < images.length; i++) {
-        const img = images[i];
-        console.log(`Processing image ${i}: ${img.src.substring(0, 50)}...`);
-        if (!img.src.startsWith('data:')) {
-          try {
-            const dataURL = await loadImageAsDataURL(img.src);
-            console.log(`Converted image ${i} to data URL (length: ${dataURL.length})`);
-            img.src = dataURL;
-          } catch (err) {
-            console.error(`Failed to convert image ${i}:`, err);
-          }
-        } else {
-          console.log(`Image ${i} already a data URL (length: ${img.src.length})`);
-        }
-
-        // Ensure image is fully loaded
-        if (!img.complete) {
-          console.log(`Waiting for image ${i} to load...`);
-          await new Promise((resolve) => {
-            img.onload = resolve;
-            img.onerror = resolve;
-          });
-        }
-        console.log(`Image ${i} complete:`, img.complete, `natural size:`, img.naturalWidth, 'x', img.naturalHeight);
-      }
-
-      // Wait a moment for DOM to settle
-      await new Promise(resolve => setTimeout(resolve, 200));
-
-      // Capture with html-to-image
-      console.log('Capturing with html-to-image...');
       const dataUrl = await toPng(node, {
         cacheBust: false,
-        pixelRatio: 3,
+        pixelRatio: 2,
         skipFonts: false,
       });
-      console.log(`Captured! Data URL length: ${dataUrl.length}`);
 
-      // Restore original images
-      images.forEach((img, i) => {
-        img.src = originalSrcs[i];
-      });
-
-      // Download
       const link = document.createElement('a');
       link.download = 'my-resolutions-2026.png';
       link.href = dataUrl;
       link.click();
-
     } catch (err) {
       console.error('Export failed:', err);
       alert('Failed to export image. Please try again.');
     }
   };
-
-  const handleUserImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setUserImage(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const backgroundImage = backgroundImages?.[goals.length];
 
   return (
     <div className="min-h-screen bg-gray-900 text-white relative">
@@ -196,6 +116,8 @@ const ResolutionsPage = () => {
             onAddGoal={handleAddGoal}
             onGoalChange={(e) => setCurrentGoal(e.target.value)}
             onDeleteGoal={handleDeleteGoal}
+            onMoveGoalUp={handleMoveGoalUp}
+            onMoveGoalDown={handleMoveGoalDown}
             onDownload={handleDownload}
             onPresetSelect={handlePresetSelect}
             selectedFont={selectedFont}
@@ -206,7 +128,6 @@ const ResolutionsPage = () => {
             onBgColorChange={(color) => {
               setBgColor(color);
               setBackgroundType('solid');
-              setBackgroundImages(undefined);
             }}
             frameColor={frameColor}
             onFrameColorChange={setFrameColor}
@@ -216,10 +137,10 @@ const ResolutionsPage = () => {
             onThemeChange={(theme) => {
               setSelectedTheme(theme);
               setBackgroundType('gradient');
-              setBackgroundImages(undefined);
             }}
             backgroundType={backgroundType}
-            onUserImageUpload={handleUserImageUpload}
+            xUsername={xUsername}
+            onXUsernameChange={handleXUsernameChange}
           />
         </Panel>
         <PanelResizeHandle className="w-2 bg-gray-700 hover:bg-purple-600 active:bg-purple-500 transition-colors" />
@@ -234,8 +155,7 @@ const ResolutionsPage = () => {
               frameBorderColor={frameBorderColor}
               theme={selectedTheme}
               backgroundType={backgroundType}
-              backgroundImage={backgroundImage}
-              userImage={userImage}
+              xUsername={xUsername}
             />
           </div>
         </Panel>

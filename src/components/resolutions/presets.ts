@@ -9,8 +9,7 @@ export interface Preset {
   frameColor: string;
   frameBorderColor: string;
   theme: Theme;
-  backgroundType: 'solid' | 'gradient' | 'image';
-  backgroundImages?: { [key: number]: string };
+  backgroundType: 'solid' | 'gradient';
 }
 
 export const stylePresets: Preset[] = [
@@ -63,5 +62,45 @@ export const stylePresets: Preset[] = [
     frameBorderColor: 'rgba(255, 255, 255, 0.1)',
     theme: themes[5], // Onyx
     backgroundType: 'gradient',
+  },
+  {
+    name: 'Sunset',
+    font: fontOptions[0], // Default
+    goalTextColor: '#FFFFFF',
+    bgColor: '#DC2626',
+    frameColor: 'rgba(255, 255, 255, 0.15)',
+    frameBorderColor: 'rgba(255, 255, 255, 0.25)',
+    theme: themes[3], // Sunset
+    backgroundType: 'gradient',
+  },
+  {
+    name: 'Forest',
+    font: fontOptions[2], // Serif
+    goalTextColor: '#FFFFFF',
+    bgColor: '#047857',
+    frameColor: 'rgba(255, 255, 255, 0.1)',
+    frameBorderColor: 'rgba(255, 255, 255, 0.2)',
+    theme: themes[2], // Ocean (teal-blue, closest to forest)
+    backgroundType: 'solid',
+  },
+  {
+    name: 'Coral',
+    font: fontOptions[1], // Sans-Serif
+    goalTextColor: '#1F2937',
+    bgColor: '#FDA4AF',
+    frameColor: 'rgba(255, 255, 255, 0.3)',
+    frameBorderColor: 'rgba(255, 255, 255, 0.4)',
+    theme: themes[1], // Sunrise
+    backgroundType: 'solid',
+  },
+  {
+    name: 'Neon',
+    font: fontOptions[3], // Monospace
+    goalTextColor: '#10B981',
+    bgColor: '#000000',
+    frameColor: 'rgba(16, 185, 129, 0.1)',
+    frameBorderColor: 'rgba(16, 185, 129, 0.4)',
+    theme: themes[0], // Default
+    backgroundType: 'solid',
   },
 ];

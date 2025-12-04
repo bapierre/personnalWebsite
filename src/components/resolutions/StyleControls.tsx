@@ -12,6 +12,8 @@ interface StyleControlsProps {
   onAddGoal: (e: React.FormEvent) => void;
   onGoalChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onDeleteGoal: (index: number) => void;
+  onMoveGoalUp: (index: number) => void;
+  onMoveGoalDown: (index: number) => void;
   onDownload: () => void;
   onPresetSelect: (preset: Preset) => void;
   selectedFont: { name: string; className: string };
@@ -26,8 +28,9 @@ interface StyleControlsProps {
   onFrameBorderColorChange: (color: string) => void;
   selectedTheme: Theme;
   onThemeChange: (theme: Theme) => void;
-  backgroundType: 'solid' | 'gradient' | 'image';
-  onUserImageUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  backgroundType: 'solid' | 'gradient';
+  xUsername: string;
+  onXUsernameChange: (value: string) => void;
 }
 
 const StyleControls: React.FC<StyleControlsProps> = (props) => {
@@ -36,16 +39,17 @@ const StyleControls: React.FC<StyleControlsProps> = (props) => {
       <h1 className="text-3xl font-bold mb-6 text-center lg:text-left" style={{ fontFamily: 'titles' }}>
         Customize Snapshot
       </h1>
-      
-      <label className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors text-center cursor-pointer block mb-6">
-        Upload your profile picture
+
+      <div className="mb-6">
+        <label className="block text-sm font-medium mb-2">X Username</label>
         <input
-          type="file"
-          accept="image/*"
-          onChange={props.onUserImageUpload}
-          className="hidden"
+          type="text"
+          value={props.xUsername}
+          onChange={(e) => props.onXUsernameChange(e.target.value)}
+          placeholder="@username"
+          className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
         />
-      </label>
+      </div>
 
       <div className="flex-grow overflow-y-auto pr-2">
         <Accordion>
@@ -73,9 +77,33 @@ const StyleControls: React.FC<StyleControlsProps> = (props) => {
             </form>
             <div className="space-y-2">
               {props.goals.map((goal, index) => (
-                <div key={index} className="bg-gray-800/50 rounded-lg p-3 text-sm flex justify-between items-center">
-                  <span>{index + 1}. {goal}</span>
-                  <button onClick={() => props.onDeleteGoal(index)} className="text-red-400 hover:text-red-500 ml-2">&times;</button>
+                <div key={index} className="bg-gray-800/50 rounded-lg p-3 text-sm flex justify-between items-center gap-2">
+                  <span className="flex-grow">{index + 1}. {goal}</span>
+                  <div className="flex gap-1">
+                    <button
+                      onClick={() => props.onMoveGoalUp(index)}
+                      disabled={index === 0}
+                      className="text-gray-400 hover:text-purple-400 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                      title="Move up"
+                    >
+                      ↑
+                    </button>
+                    <button
+                      onClick={() => props.onMoveGoalDown(index)}
+                      disabled={index === props.goals.length - 1}
+                      className="text-gray-400 hover:text-purple-400 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                      title="Move down"
+                    >
+                      ↓
+                    </button>
+                    <button
+                      onClick={() => props.onDeleteGoal(index)}
+                      className="text-red-400 hover:text-red-500 ml-1"
+                      title="Delete"
+                    >
+                      ×
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
