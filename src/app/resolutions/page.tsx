@@ -100,15 +100,16 @@ const ResolutionsPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white relative">
-      <div className="absolute top-4 right-4 z-10">
+      <div className="absolute top-2 right-2 lg:top-4 lg:right-4 z-10">
         <Link href="/" passHref>
-          <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
-            ← a cool portfolio
+          <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-3 lg:px-4 rounded-lg transition-colors text-sm lg:text-base">
+            <span className="sm:hidden">← Back</span>
+            <span className="hidden sm:inline">← a cool portfolio</span>
           </button>
         </Link>
       </div>
 
-      <PanelGroup direction="horizontal" className="min-h-screen">
+      <PanelGroup direction="horizontal" className="hidden lg:flex min-h-screen">
         <Panel defaultSize={30} minSize={20} className="p-4 lg:p-8 !overflow-y-auto">
           <StyleControls
             goals={goals}
@@ -160,6 +161,59 @@ const ResolutionsPage = () => {
           </div>
         </Panel>
       </PanelGroup>
+
+      {/* Mobile Layout */}
+      <div className="lg:hidden flex flex-col min-h-screen">
+        <div className="p-4 bg-gray-900 border-b border-gray-700 max-h-[60vh] overflow-y-auto">
+          <StyleControls
+            goals={goals}
+            currentGoal={currentGoal}
+            onAddGoal={handleAddGoal}
+            onGoalChange={(e) => setCurrentGoal(e.target.value)}
+            onDeleteGoal={handleDeleteGoal}
+            onMoveGoalUp={handleMoveGoalUp}
+            onMoveGoalDown={handleMoveGoalDown}
+            onDownload={handleDownload}
+            onPresetSelect={handlePresetSelect}
+            selectedFont={selectedFont}
+            onFontChange={setSelectedFont}
+            goalTextColor={goalTextColor}
+            onGoalTextColorChange={setGoalTextColor}
+            bgColor={bgColor}
+            onBgColorChange={(color) => {
+              setBgColor(color);
+              setBackgroundType('solid');
+            }}
+            frameColor={frameColor}
+            onFrameColorChange={setFrameColor}
+            frameBorderColor={frameBorderColor}
+            onFrameBorderColorChange={setFrameBorderColor}
+            selectedTheme={selectedTheme}
+            onThemeChange={(theme) => {
+              setSelectedTheme(theme);
+              setBackgroundType('gradient');
+            }}
+            backgroundType={backgroundType}
+            xUsername={xUsername}
+            onXUsernameChange={handleXUsernameChange}
+          />
+        </div>
+        <div className="flex-1 flex items-center justify-center p-4 bg-gray-800 overflow-auto">
+          <div className="w-full max-w-md">
+            <SnapshotCard
+              goals={goals}
+              font={selectedFont}
+              goalTextColor={goalTextColor}
+              bgColor={bgColor}
+              frameColor={frameColor}
+              frameBorderColor={frameBorderColor}
+              theme={selectedTheme}
+              backgroundType={backgroundType}
+              xUsername={xUsername}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
