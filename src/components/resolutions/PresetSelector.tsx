@@ -9,14 +9,6 @@ interface PresetSelectorProps {
 
 const PresetSelector: React.FC<PresetSelectorProps> = ({ onSelect }) => {
   const getBackgroundStyle = (preset: Preset): React.CSSProperties => {
-    if (preset.backgroundType === 'image' && preset.backgroundImages) {
-      const imageUrl = Object.values(preset.backgroundImages)[0];
-      return {
-        backgroundImage: `url(${imageUrl})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      };
-    }
     if (preset.backgroundType === 'gradient') {
       return {
         backgroundImage: `radial-gradient(at top left, ${preset.theme.gradientFrom}, ${preset.theme.gradientTo})`,
