@@ -78,7 +78,11 @@ const ResolutionsPage = () => {
   };
 
   const handleDownload = async () => {
-    const node = document.getElementById('snapshot-card-container');
+    // Get the visible snapshot card (desktop or mobile)
+    const desktopNode = document.getElementById('snapshot-card-desktop');
+    const mobileNode = document.getElementById('snapshot-card-mobile');
+    const node = desktopNode?.offsetParent !== null ? desktopNode : mobileNode;
+
     if (!node) return;
 
     try {
@@ -159,6 +163,7 @@ const ResolutionsPage = () => {
               theme={selectedTheme}
               backgroundType={backgroundType}
               xUsername={xUsername}
+              containerId="snapshot-card-desktop"
             />
           </div>
         </Panel>
@@ -213,6 +218,7 @@ const ResolutionsPage = () => {
               theme={selectedTheme}
               backgroundType={backgroundType}
               xUsername={xUsername}
+              containerId="snapshot-card-mobile"
             />
           </div>
         </div>

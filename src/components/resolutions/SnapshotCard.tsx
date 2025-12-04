@@ -13,6 +13,7 @@ interface SnapshotCardProps {
   theme: Theme;
   backgroundType: 'solid' | 'gradient';
   xUsername: string;
+  containerId?: string;
 }
 
 const SnapshotCard: React.FC<SnapshotCardProps> = ({
@@ -25,6 +26,7 @@ const SnapshotCard: React.FC<SnapshotCardProps> = ({
   theme,
   backgroundType,
   xUsername,
+  containerId = 'snapshot-card-container',
 }) => {
   const layout = layouts[goals.length]?.[0];
 
@@ -58,7 +60,7 @@ const SnapshotCard: React.FC<SnapshotCardProps> = ({
 
   return (
     <div
-      id="snapshot-card-container"
+      id={containerId}
       className={`w-full max-w-xl p-6 rounded-3xl shadow-2xl ${font.className}`}
       style={{
         ...getBackgroundStyle(),
