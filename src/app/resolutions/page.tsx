@@ -109,8 +109,10 @@ const ResolutionsPage = () => {
         </Link>
       </div>
 
-      <PanelGroup direction="horizontal" className="hidden lg:flex min-h-screen">
-        <Panel defaultSize={30} minSize={20} className="p-4 lg:p-8 !overflow-y-auto">
+      {/* Desktop Layout */}
+      <div className="hidden lg:block">
+        <PanelGroup direction="horizontal" className="min-h-screen">
+          <Panel defaultSize={30} minSize={20} className="p-4 lg:p-8 !overflow-y-auto">
           <StyleControls
             goals={goals}
             currentGoal={currentGoal}
@@ -161,10 +163,11 @@ const ResolutionsPage = () => {
           </div>
         </Panel>
       </PanelGroup>
+      </div>
 
       {/* Mobile Layout */}
-      <div className="lg:hidden flex flex-col min-h-screen">
-        <div className="p-4 bg-gray-900 border-b border-gray-700 max-h-[60vh] overflow-y-auto">
+      <div className="lg:hidden flex flex-col min-h-screen pt-16">
+        <div className="p-4 bg-gray-900 border-b border-gray-700 overflow-y-auto">
           <StyleControls
             goals={goals}
             currentGoal={currentGoal}

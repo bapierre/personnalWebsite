@@ -29,7 +29,7 @@ interface AccordionProps {
 }
 
 const Accordion: React.FC<AccordionProps> = ({ children }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
